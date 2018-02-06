@@ -337,65 +337,65 @@
         <xsl:call-template name="style_inline">
           <xsl:with-param name="style">
 
-            <xsl:text>:root {</xsl:text>
+            <xsl:text>:root {&#x0A;</xsl:text>
 
             <xsl:text>  --www-eee-body-background: </xsl:text>
             <xsl:value-of select="$www-eee-body-background" />
-            <xsl:text>;</xsl:text>
+            <xsl:text>;&#x0A;</xsl:text>
 
             <xsl:text>  --www-eee-body-foreground: </xsl:text>
             <xsl:value-of select="$www-eee-body-foreground" />
-            <xsl:text>;</xsl:text>
+            <xsl:text>;&#x0A;</xsl:text>
 
             <xsl:text>  --www-eee-raised-background: </xsl:text>
             <xsl:value-of select="$www-eee-raised-background" />
-            <xsl:text>;</xsl:text>
+            <xsl:text>;&#x0A;</xsl:text>
 
             <xsl:text>  --www-eee-raised-foreground: </xsl:text>
             <xsl:value-of select="$www-eee-raised-foreground" />
-            <xsl:text>;</xsl:text>
+            <xsl:text>;&#x0A;</xsl:text>
 
             <xsl:text>  --www-eee-border-color: </xsl:text>
             <xsl:value-of select="$www-eee-border-color" />
-            <xsl:text>;</xsl:text>
+            <xsl:text>;&#x0A;</xsl:text>
 
             <xsl:text>  --www-eee-content-background: </xsl:text>
             <xsl:value-of select="$www-eee-content-background" />
-            <xsl:text>;</xsl:text>
+            <xsl:text>;&#x0A;</xsl:text>
 
             <xsl:text>  --www-eee-content-foreground: </xsl:text>
             <xsl:value-of select="$www-eee-content-foreground" />
-            <xsl:text>;</xsl:text>
+            <xsl:text>;&#x0A;</xsl:text>
 
             <xsl:text>  --www-eee-portal-heading-background: </xsl:text>
             <xsl:value-of select="$www-eee-portal-heading-background" />
-            <xsl:text>;</xsl:text>
+            <xsl:text>;&#x0A;</xsl:text>
 
             <xsl:text>  --www-eee-portal-heading-foreground: </xsl:text>
             <xsl:value-of select="$www-eee-portal-heading-foreground" />
-            <xsl:text>;</xsl:text>
+            <xsl:text>;&#x0A;</xsl:text>
 
             <xsl:text>  --www-eee-nav-active-foreground: </xsl:text>
             <xsl:value-of select="$www-eee-nav-active-foreground" />
-            <xsl:text>;</xsl:text>
+            <xsl:text>;&#x0A;</xsl:text>
 
             <xsl:text>  --www-eee-nav-inactive-foreground: </xsl:text>
             <xsl:value-of select="$www-eee-nav-inactive-foreground" />
-            <xsl:text>;</xsl:text>
+            <xsl:text>;&#x0A;</xsl:text>
 
             <xsl:text>  --www-eee-channel-title-foreground: </xsl:text>
             <xsl:value-of select="$www-eee-channel-title-foreground" />
-            <xsl:text>;</xsl:text>
+            <xsl:text>;&#x0A;</xsl:text>
 
             <xsl:text>  --www-eee-channel-control: </xsl:text>
             <xsl:value-of select="$www-eee-channel-control" />
-            <xsl:text>;</xsl:text>
+            <xsl:text>;&#x0A;</xsl:text>
 
             <xsl:text>  --www-eee-footer-foreground: </xsl:text>
             <xsl:value-of select="$www-eee-footer-foreground" />
-            <xsl:text>;</xsl:text>
+            <xsl:text>;&#x0A;</xsl:text>
 
-            <xsl:text>}</xsl:text>
+            <xsl:text>}&#x0A;</xsl:text>
 
             <xsl:text>
 <![CDATA[
@@ -764,41 +764,41 @@ input#ChannelSizeRadio_5:checked ~ footer > ol.channel_size_control > li#Channel
             <xsl:for-each select="body/outline">
 
               <!-- Display the content section for a group when it's nav radio is checked. -->
-              <xsl:text> input#GroupNavRadio_</xsl:text>
+              <xsl:text>&#x0A;input#GroupNavRadio_</xsl:text>
               <xsl:call-template name="write_group_id" />
               <xsl:text>:checked ~ div.middle > main > section#Group_</xsl:text>
               <xsl:call-template name="write_group_id" />
-              <xsl:text> { display: flex; }</xsl:text>
+              <xsl:text> {&#x0A;  display: flex;&#x0A;}&#x0A;</xsl:text>
 
               <!-- Highlight the navigation tab for a group when it's nav radio is checked. -->
-              <xsl:text> input#GroupNavRadio_</xsl:text>
+              <xsl:text>&#x0A;input#GroupNavRadio_</xsl:text>
               <xsl:call-template name="write_group_id" />
               <xsl:text>:checked ~ div.middle > nav > ol > li#GroupNavItem_</xsl:text>
               <xsl:call-template name="write_group_id" />
-              <xsl:text> { background-color: var(--www-eee-body-background); color: var(--www-eee-nav-active-foreground); font-weight: bold; border-style: inset; border-color: var(--www-eee-border-color); border-right: none; margin-right: -0.19rem; }</xsl:text>
+              <xsl:text> {&#x0A;  background-color: var(--www-eee-body-background);&#x0A;  color: var(--www-eee-nav-active-foreground);&#x0A;  font-weight: bold;&#x0A;  border-style: inset;&#x0A;  border-color: var(--www-eee-border-color);&#x0A;  border-right: none;&#x0A;  margin-right: -0.19rem;&#x0A;}&#x0A;</xsl:text>
 
               <xsl:for-each select="outline">
 
                 <!-- Maximize the channel section when it's maximize box is checked. -->
-                <xsl:text> input#ChannelMaximizeCheckbox_</xsl:text>
+                <xsl:text>&#x0A;input#ChannelMaximizeCheckbox_</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text>:checked ~ div.middle > main > section.group > section#Channel_</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text> { position: absolute; width: 100%; height: 100%; top: 0; left: 0 }</xsl:text>
+                <xsl:text> {&#x0A;  position: absolute;&#x0A;  width: 100%;&#x0A;  height: 100%;&#x0A;  top: 0;&#x0A;  left: 0;&#x0A;}&#x0A;</xsl:text>
 
                 <!-- Don't display the channel close control when it's maximize box is checked. -->
-                <xsl:text> input#ChannelMaximizeCheckbox_</xsl:text>
+                <xsl:text>&#x0A;input#ChannelMaximizeCheckbox_</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text>:checked ~ div.middle > main > section.group > section#Channel_</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text> > div.channel_chrome > header > div.channel_controls > label.channel_close { display: none; }</xsl:text>
+                <xsl:text> > div.channel_chrome > header > div.channel_controls > label.channel_close {&#x0A;  display: none;&#x0A;}&#x0A;</xsl:text>
 
                 <!-- Don't display the channel when it's close box is checked. -->
-                <xsl:text> input#ChannelCloseCheckbox_</xsl:text>
+                <xsl:text>&#x0A;input#ChannelCloseCheckbox_</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text>:checked ~ div.middle > main > section.group > section#Channel_</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text> { display: none; }</xsl:text>
+                <xsl:text> {&#x0A;  display: none;&#x0A;}&#x0A;</xsl:text>
 
               </xsl:for-each>
 
