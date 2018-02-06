@@ -3,18 +3,20 @@
 <xsl:stylesheet version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output indent="yes" media-type="application/xhtml+xml" method="xml" omit-xml-declaration="no" doctype-system="about:legacy-compat" />
 
-  <xsl:param name="www-eee-body-background" select="'white'"/>
-  <xsl:param name="www-eee-body-foreground" select="'black'"/>
-  <xsl:param name="www-eee-raised-background" select="'gainsboro'"/>
-  <xsl:param name="www-eee-raised-foreground" select="'black'"/>
-  <xsl:param name="www-eee-border-color" select="'silver'"/>
-  <xsl:param name="www-eee-portal-heading-background" select="'var(--www-eee-body-background)'"/>
-  <xsl:param name="www-eee-portal-heading-foreground" select="'var(--www-eee-body-foreground)'"/>
-  <xsl:param name="www-eee-nav-active-foreground" select="'var(--www-eee-body-foreground)'"/>
-  <xsl:param name="www-eee-nav-inactive-foreground" select="'var(--www-eee-raised-foreground)'"/>
-  <xsl:param name="www-eee-channel-title-foreground" select="'var(--www-eee-raised-foreground)'"/>
-  <xsl:param name="www-eee-channel-control" select="'var(--www-eee-raised-foreground)'"/>
-  <xsl:param name="www-eee-footer-foreground" select="'gray'"/>
+  <xsl:param name="www-eee-body-background" select="'white'" />
+  <xsl:param name="www-eee-body-foreground" select="'black'" />
+  <xsl:param name="www-eee-raised-background" select="'gainsboro'" />
+  <xsl:param name="www-eee-raised-foreground" select="'black'" />
+  <xsl:param name="www-eee-border-color" select="'silver'" />
+  <xsl:param name="www-eee-content-background" select="'var(--www-eee-body-background)'" />
+  <xsl:param name="www-eee-content-foreground" select="'var(--www-eee-body-foreground)'" />
+  <xsl:param name="www-eee-portal-heading-background" select="'var(--www-eee-content-background)'" />
+  <xsl:param name="www-eee-portal-heading-foreground" select="'var(--www-eee-content-foreground)'" />
+  <xsl:param name="www-eee-nav-active-foreground" select="'var(--www-eee-body-foreground)'" />
+  <xsl:param name="www-eee-nav-inactive-foreground" select="'var(--www-eee-raised-foreground)'" />
+  <xsl:param name="www-eee-channel-title-foreground" select="'var(--www-eee-raised-foreground)'" />
+  <xsl:param name="www-eee-channel-control" select="'var(--www-eee-raised-foreground)'" />
+  <xsl:param name="www-eee-footer-foreground" select="'gray'" />
 
   <!-- Create a valid XML ID value from the text input. -->
   <xsl:template name="encode_id">
@@ -255,13 +257,13 @@
     <xsl:if test="$i &lt; $count">
       <xsl:call-template name="channel_size_input">
         <xsl:with-param name="i">
-          <xsl:value-of select="$i + 1"/>
+          <xsl:value-of select="$i + 1" />
         </xsl:with-param>
         <xsl:with-param name="count">
-          <xsl:value-of select="$count"/>
+          <xsl:value-of select="$count" />
         </xsl:with-param>
         <xsl:with-param name="def">
-          <xsl:value-of select="$def"/>
+          <xsl:value-of select="$def" />
         </xsl:with-param>
       </xsl:call-template>
     </xsl:if>
@@ -290,10 +292,10 @@
     <xsl:if test="$i &lt; $count">
       <xsl:call-template name="channel_size_label">
         <xsl:with-param name="i">
-          <xsl:value-of select="$i + 1"/>
+          <xsl:value-of select="$i + 1" />
         </xsl:with-param>
         <xsl:with-param name="count">
-          <xsl:value-of select="$count"/>
+          <xsl:value-of select="$count" />
         </xsl:with-param>
       </xsl:call-template>
     </xsl:if>
@@ -323,22 +325,76 @@
           </xsl:attribute>
         </xsl:element>
 
+        <xsl:element name="meta">
+          <xsl:attribute name="name">
+            <xsl:text>viewport</xsl:text>
+          </xsl:attribute>
+          <xsl:attribute name="content">
+            <xsl:text>width=device-width, initial-scale=1</xsl:text>
+          </xsl:attribute>
+        </xsl:element>
+
         <xsl:call-template name="style_inline">
           <xsl:with-param name="style">
 
             <xsl:text>:root {</xsl:text>
-            <xsl:text>  --www-eee-body-background: </xsl:text><xsl:value-of select="$www-eee-body-background" /><xsl:text>;</xsl:text>
-            <xsl:text>  --www-eee-body-foreground: </xsl:text><xsl:value-of select="$www-eee-body-foreground" /><xsl:text>;</xsl:text>
-            <xsl:text>  --www-eee-raised-background: </xsl:text><xsl:value-of select="$www-eee-raised-background" /><xsl:text>;</xsl:text>
-            <xsl:text>  --www-eee-raised-foreground: </xsl:text><xsl:value-of select="$www-eee-raised-foreground" /><xsl:text>;</xsl:text>
-            <xsl:text>  --www-eee-border-color: </xsl:text><xsl:value-of select="$www-eee-border-color" /><xsl:text>;</xsl:text>
-            <xsl:text>  --www-eee-portal-heading-background: </xsl:text><xsl:value-of select="$www-eee-portal-heading-background" /><xsl:text>;</xsl:text>
-            <xsl:text>  --www-eee-portal-heading-foreground: </xsl:text><xsl:value-of select="$www-eee-portal-heading-foreground" /><xsl:text>;</xsl:text>
-            <xsl:text>  --www-eee-nav-active-foreground: </xsl:text><xsl:value-of select="$www-eee-nav-active-foreground" /><xsl:text>;</xsl:text>
-            <xsl:text>  --www-eee-nav-inactive-foreground: </xsl:text><xsl:value-of select="$www-eee-nav-inactive-foreground" /><xsl:text>;</xsl:text>
-            <xsl:text>  --www-eee-channel-title-foreground: </xsl:text><xsl:value-of select="$www-eee-channel-title-foreground" /><xsl:text>;</xsl:text>
-            <xsl:text>  --www-eee-channel-control: </xsl:text><xsl:value-of select="$www-eee-channel-control" /><xsl:text>;</xsl:text>
-            <xsl:text>  --www-eee-footer-foreground: </xsl:text><xsl:value-of select="$www-eee-footer-foreground" /><xsl:text>;</xsl:text>
+
+            <xsl:text>  --www-eee-body-background: </xsl:text>
+            <xsl:value-of select="$www-eee-body-background" />
+            <xsl:text>;</xsl:text>
+
+            <xsl:text>  --www-eee-body-foreground: </xsl:text>
+            <xsl:value-of select="$www-eee-body-foreground" />
+            <xsl:text>;</xsl:text>
+
+            <xsl:text>  --www-eee-raised-background: </xsl:text>
+            <xsl:value-of select="$www-eee-raised-background" />
+            <xsl:text>;</xsl:text>
+
+            <xsl:text>  --www-eee-raised-foreground: </xsl:text>
+            <xsl:value-of select="$www-eee-raised-foreground" />
+            <xsl:text>;</xsl:text>
+
+            <xsl:text>  --www-eee-border-color: </xsl:text>
+            <xsl:value-of select="$www-eee-border-color" />
+            <xsl:text>;</xsl:text>
+
+            <xsl:text>  --www-eee-content-background: </xsl:text>
+            <xsl:value-of select="$www-eee-content-background" />
+            <xsl:text>;</xsl:text>
+
+            <xsl:text>  --www-eee-content-foreground: </xsl:text>
+            <xsl:value-of select="$www-eee-content-foreground" />
+            <xsl:text>;</xsl:text>
+
+            <xsl:text>  --www-eee-portal-heading-background: </xsl:text>
+            <xsl:value-of select="$www-eee-portal-heading-background" />
+            <xsl:text>;</xsl:text>
+
+            <xsl:text>  --www-eee-portal-heading-foreground: </xsl:text>
+            <xsl:value-of select="$www-eee-portal-heading-foreground" />
+            <xsl:text>;</xsl:text>
+
+            <xsl:text>  --www-eee-nav-active-foreground: </xsl:text>
+            <xsl:value-of select="$www-eee-nav-active-foreground" />
+            <xsl:text>;</xsl:text>
+
+            <xsl:text>  --www-eee-nav-inactive-foreground: </xsl:text>
+            <xsl:value-of select="$www-eee-nav-inactive-foreground" />
+            <xsl:text>;</xsl:text>
+
+            <xsl:text>  --www-eee-channel-title-foreground: </xsl:text>
+            <xsl:value-of select="$www-eee-channel-title-foreground" />
+            <xsl:text>;</xsl:text>
+
+            <xsl:text>  --www-eee-channel-control: </xsl:text>
+            <xsl:value-of select="$www-eee-channel-control" />
+            <xsl:text>;</xsl:text>
+
+            <xsl:text>  --www-eee-footer-foreground: </xsl:text>
+            <xsl:value-of select="$www-eee-footer-foreground" />
+            <xsl:text>;</xsl:text>
+
             <xsl:text>}</xsl:text>
 
             <xsl:text>
@@ -542,6 +598,8 @@ label.channel_maximize, label.channel_close {
   border-style: inset;
   border-color: var(--www-eee-border-color);
   border-width: inherit;
+  background-color: var(--www-eee-content-background);
+  color: var(--www-eee-content-foreground);
 }
 
 body > footer {
