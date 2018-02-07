@@ -83,15 +83,12 @@
   <xsl:template name="maximize_icon">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-1 -1 13 13" preserveAspectRatio="xMidYMid">
       <xsl:element name="g">
-        <xsl:attribute name="id">
-          <xsl:text>maximize_icon</xsl:text>
-        </xsl:attribute>
         <xsl:attribute name="class">
-          <xsl:text>channel_control_icon</xsl:text>
+          <xsl:text>channel_control_icon maximize_icon</xsl:text>
         </xsl:attribute>
 
         <xsl:element name="polyline">
-          <xsl:attribute name="id">
+          <xsl:attribute name="class">
             <xsl:text>maximize_icon_minimized_box</xsl:text>
           </xsl:attribute>
           <xsl:attribute name="points">
@@ -100,7 +97,7 @@
         </xsl:element>
 
         <xsl:element name="polyline">
-          <xsl:attribute name="id">
+          <xsl:attribute name="class">
             <xsl:text>maximize_icon_maximized_box</xsl:text>
           </xsl:attribute>
           <xsl:attribute name="points">
@@ -109,7 +106,7 @@
         </xsl:element>
 
         <xsl:element name="line">
-          <xsl:attribute name="id">
+          <xsl:attribute name="class">
             <xsl:text>maximize_icon_top_arrow_body</xsl:text>
           </xsl:attribute>
           <xsl:attribute name="x1">
@@ -127,7 +124,7 @@
         </xsl:element>
 
         <xsl:element name="polyline">
-          <xsl:attribute name="id">
+          <xsl:attribute name="class">
             <xsl:text>maximize_icon_top_arrow_head</xsl:text>
           </xsl:attribute>
           <xsl:attribute name="points">
@@ -136,7 +133,7 @@
         </xsl:element>
 
         <xsl:element name="polyline">
-          <xsl:attribute name="id">
+          <xsl:attribute name="class">
             <xsl:text>maximize_icon_bottom_arrow_head</xsl:text>
           </xsl:attribute>
           <xsl:attribute name="points">
@@ -151,15 +148,12 @@
   <xsl:template name="close_icon">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-1 -1 13 13" preserveAspectRatio="xMidYMid">
       <xsl:element name="g">
-        <xsl:attribute name="id">
-          <xsl:text>close_icon</xsl:text>
-        </xsl:attribute>
         <xsl:attribute name="class">
-          <xsl:text>channel_control_icon</xsl:text>
+          <xsl:text>channel_control_icon close_icon</xsl:text>
         </xsl:attribute>
 
         <xsl:element name="rect">
-          <xsl:attribute name="id">
+          <xsl:attribute name="class">
             <xsl:text>close_icon_box</xsl:text>
           </xsl:attribute>
           <xsl:attribute name="x">
@@ -177,7 +171,7 @@
         </xsl:element>
 
         <xsl:element name="line">
-          <xsl:attribute name="id">
+          <xsl:attribute name="class">
             <xsl:text>close_icon_back_slash</xsl:text>
           </xsl:attribute>
           <xsl:attribute name="x1">
@@ -195,7 +189,7 @@
         </xsl:element>
 
         <xsl:element name="line">
-          <xsl:attribute name="id">
+          <xsl:attribute name="class">
             <xsl:text>close_icon_forward_slash</xsl:text>
           </xsl:attribute>
           <xsl:attribute name="x1">
@@ -885,6 +879,11 @@ input#ChannelSizeRadio-5:checked ~ footer > ol.channel_size_control > li#Channel
                   <xsl:attribute name="src">
                     <xsl:text>favicon.svg</xsl:text>
                   </xsl:attribute>
+                  <xsl:if test="head/ownerName">
+                    <xsl:attribute name="alt">
+                      <xsl:value-of select="head/ownerName" />
+                    </xsl:attribute>
+                  </xsl:if>
                 </xsl:element>
               </xsl:element>
 
