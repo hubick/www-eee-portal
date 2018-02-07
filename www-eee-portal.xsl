@@ -3,6 +3,7 @@
 <xsl:stylesheet version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output indent="yes" media-type="application/xhtml+xml" method="xml" omit-xml-declaration="no" doctype-system="about:legacy-compat" />
 
+  <xsl:param name="www-eee-channel-title-link-disable" select="'false'" />
   <xsl:param name="www-eee-channel-sandbox" select="''" />
   <xsl:param name="www-eee-body-background" select="'white'" />
   <xsl:param name="www-eee-body-foreground" select="'black'" />
@@ -976,7 +977,7 @@ input#ChannelSizeRadio-5:checked ~ footer > ol.channel_size_control > li#Channel
 
                         <xsl:element name="h3">
                           <xsl:element name="a">
-                            <xsl:if test="@url or @htmlUrl">
+                            <xsl:if test="($www-eee-channel-title-link-disable = 'false') and (@url or @htmlUrl)">
                               <xsl:attribute name="href">
                                 <xsl:choose>
                                   <xsl:when test="@url">
