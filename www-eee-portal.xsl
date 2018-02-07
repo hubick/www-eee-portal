@@ -29,19 +29,13 @@
       <xsl:text>-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz</xsl:text>
     </xsl:variable>
     <xsl:variable name="hex-chars">
-      <xsl:text>0123456789ABCDEFabcdef</xsl:text>
+      <xsl:text>0123456789ABCDEFABCDEF</xsl:text>
     </xsl:variable>
 
     <xsl:if test="$text">
       <xsl:variable name="first-char" select="substring($text,1,1)" />
       <xsl:choose>
-        <xsl:when test="($first-char = '_') and (string-length($text) &gt;= 3) and (contains($hex-chars, substring($text,2,1))) and (contains($hex-chars, substring($text,3,1)))">
-          <xsl:value-of select="$first-char" />
-        </xsl:when>
         <xsl:when test="contains($valid-chars, $first-char)">
-          <xsl:value-of select="$first-char" />
-        </xsl:when>
-        <xsl:when test="not(contains($ascii-chars, $first-char))">
           <xsl:value-of select="$first-char" />
         </xsl:when>
         <xsl:otherwise>
@@ -75,20 +69,12 @@
   </xsl:template>
 
   <xsl:template name="write_channel_id">
+    <xsl:for-each select="..">
+      <xsl:call-template name="write_group_id" />
+    </xsl:for-each>
+    <xsl:text>-</xsl:text>
     <xsl:call-template name="encode_id">
-      <xsl:with-param name="text">
-        <xsl:choose>
-          <xsl:when test="@url">
-            <xsl:value-of select="@url" />
-          </xsl:when>
-          <xsl:when test="@htmlUrl">
-            <xsl:value-of select="@htmlUrl" />
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="@xmlUrl" />
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:with-param>
+      <xsl:with-param name="text" select="@text" />
     </xsl:call-template>
   </xsl:template>
 
@@ -244,7 +230,7 @@
         <xsl:text>state channel_size_state</xsl:text>
       </xsl:attribute>
       <xsl:attribute name="id">
-        <xsl:text>ChannelSizeRadio_</xsl:text>
+        <xsl:text>ChannelSizeRadio-</xsl:text>
         <xsl:value-of select="$i" />
       </xsl:attribute>
       <xsl:if test="$i = $def">
@@ -281,7 +267,7 @@
       </xsl:attribute>
       <xsl:element name="label">
         <xsl:attribute name="for">
-          <xsl:text>ChannelSizeRadio_</xsl:text>
+          <xsl:text>ChannelSizeRadio-</xsl:text>
           <xsl:value-of select="$i" />
         </xsl:attribute>
         <xsl:element name="span">
@@ -687,11 +673,11 @@ li#ChannelSizeItem_5 > label > span {
   height: 1.5em;
 }
 
-input#ChannelSizeRadio_1:checked ~ footer > ol.channel_size_control > li#ChannelSizeItem_1 > label,
-input#ChannelSizeRadio_2:checked ~ footer > ol.channel_size_control > li#ChannelSizeItem_2 > label,
-input#ChannelSizeRadio_3:checked ~ footer > ol.channel_size_control > li#ChannelSizeItem_3 > label,
-input#ChannelSizeRadio_4:checked ~ footer > ol.channel_size_control > li#ChannelSizeItem_4 > label,
-input#ChannelSizeRadio_5:checked ~ footer > ol.channel_size_control > li#ChannelSizeItem_5 > label {
+input#ChannelSizeRadio-1:checked ~ footer > ol.channel_size_control > li#ChannelSizeItem_1 > label,
+input#ChannelSizeRadio-2:checked ~ footer > ol.channel_size_control > li#ChannelSizeItem_2 > label,
+input#ChannelSizeRadio-3:checked ~ footer > ol.channel_size_control > li#ChannelSizeItem_3 > label,
+input#ChannelSizeRadio-4:checked ~ footer > ol.channel_size_control > li#ChannelSizeItem_4 > label,
+input#ChannelSizeRadio-5:checked ~ footer > ol.channel_size_control > li#ChannelSizeItem_5 > label {
   border-color: red;
 }
 
@@ -712,43 +698,43 @@ input#ChannelSizeRadio_5:checked ~ footer > ol.channel_size_control > li#Channel
     flex-wrap: wrap;
   }
 
-  input#ChannelSizeRadio_1:checked ~ div.middle > main > section.group > section.channel {
+  input#ChannelSizeRadio-1:checked ~ div.middle > main > section.group > section.channel {
     flex-basis: 15rem;
   }
 
-  input#ChannelSizeRadio_1:checked ~ div.middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
+  input#ChannelSizeRadio-1:checked ~ div.middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
     flex-basis: 30rem;
   }
 
-  input#ChannelSizeRadio_2:checked ~ div.middle > main > section.group > section.channel {
+  input#ChannelSizeRadio-2:checked ~ div.middle > main > section.group > section.channel {
     flex-basis: 25rem;
   }
 
-  input#ChannelSizeRadio_2:checked ~ div.middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
+  input#ChannelSizeRadio-2:checked ~ div.middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
     flex-basis: 35rem;
   }
 
-  input#ChannelSizeRadio_3:checked ~ div.middle > main > section.group > section.channel {
+  input#ChannelSizeRadio-3:checked ~ div.middle > main > section.group > section.channel {
     flex-basis: 35rem;
   }
 
-  input#ChannelSizeRadio_3:checked ~ div.middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
+  input#ChannelSizeRadio-3:checked ~ div.middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
     flex-basis: 40rem;
   }
 
-  input#ChannelSizeRadio_4:checked ~ div.middle > main > section.group > section.channel {
+  input#ChannelSizeRadio-4:checked ~ div.middle > main > section.group > section.channel {
     flex-basis: 50rem;
   }
 
-  input#ChannelSizeRadio_4:checked ~ div.middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
+  input#ChannelSizeRadio-4:checked ~ div.middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
     flex-basis: 50rem;
   }
 
-  input#ChannelSizeRadio_5:checked ~ div.middle > main > section.group > section.channel {
+  input#ChannelSizeRadio-5:checked ~ div.middle > main > section.group > section.channel {
     flex-basis: 70rem;
   }
 
-  input#ChannelSizeRadio_5:checked ~ div.middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
+  input#ChannelSizeRadio-5:checked ~ div.middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
     flex-basis: 70rem;
   }
 
@@ -764,39 +750,39 @@ input#ChannelSizeRadio_5:checked ~ footer > ol.channel_size_control > li#Channel
             <xsl:for-each select="body/outline">
 
               <!-- Display the content section for a group when it's nav radio is checked. -->
-              <xsl:text>&#x0A;input#GroupNavRadio_</xsl:text>
+              <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
               <xsl:call-template name="write_group_id" />
-              <xsl:text>:checked ~ div.middle > main > section#Group_</xsl:text>
+              <xsl:text>:checked ~ div.middle > main > section#Group-</xsl:text>
               <xsl:call-template name="write_group_id" />
               <xsl:text> {&#x0A;  display: flex;&#x0A;}&#x0A;</xsl:text>
 
               <!-- Highlight the navigation tab for a group when it's nav radio is checked. -->
-              <xsl:text>&#x0A;input#GroupNavRadio_</xsl:text>
+              <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
               <xsl:call-template name="write_group_id" />
-              <xsl:text>:checked ~ div.middle > nav > ol > li#GroupNavItem_</xsl:text>
+              <xsl:text>:checked ~ div.middle > nav > ol > li#GroupNavItem-</xsl:text>
               <xsl:call-template name="write_group_id" />
               <xsl:text> {&#x0A;  background-color: var(--www-eee-body-background);&#x0A;  color: var(--www-eee-nav-active-foreground);&#x0A;  font-weight: bold;&#x0A;  border-style: inset;&#x0A;  border-color: var(--www-eee-border-color);&#x0A;  border-right: none;&#x0A;  margin-right: -0.19rem;&#x0A;}&#x0A;</xsl:text>
 
               <xsl:for-each select="outline">
 
                 <!-- Maximize the channel section when it's maximize box is checked. -->
-                <xsl:text>&#x0A;input#ChannelMaximizeCheckbox_</xsl:text>
+                <xsl:text>&#x0A;input#ChannelMaximizeCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text>:checked ~ div.middle > main > section.group > section#Channel_</xsl:text>
+                <xsl:text>:checked ~ div.middle > main > section.group > section#Channel-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text> {&#x0A;  position: absolute;&#x0A;  width: 100%;&#x0A;  height: 100%;&#x0A;  top: 0;&#x0A;  left: 0;&#x0A;}&#x0A;</xsl:text>
 
                 <!-- Don't display the channel close control when it's maximize box is checked. -->
-                <xsl:text>&#x0A;input#ChannelMaximizeCheckbox_</xsl:text>
+                <xsl:text>&#x0A;input#ChannelMaximizeCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text>:checked ~ div.middle > main > section.group > section#Channel_</xsl:text>
+                <xsl:text>:checked ~ div.middle > main > section.group > section#Channel-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text> > div.channel_chrome > header > div.channel_controls > label.channel_close {&#x0A;  display: none;&#x0A;}&#x0A;</xsl:text>
 
                 <!-- Don't display the channel when it's close box is checked. -->
-                <xsl:text>&#x0A;input#ChannelCloseCheckbox_</xsl:text>
+                <xsl:text>&#x0A;input#ChannelCloseCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text>:checked ~ div.middle > main > section.group > section#Channel_</xsl:text>
+                <xsl:text>:checked ~ div.middle > main > section.group > section#Channel-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text> {&#x0A;  display: none;&#x0A;}&#x0A;</xsl:text>
 
@@ -826,7 +812,7 @@ input#ChannelSizeRadio_5:checked ~ footer > ol.channel_size_control > li#Channel
               <xsl:text>state group_nav_state</xsl:text>
             </xsl:attribute>
             <xsl:attribute name="id">
-              <xsl:text>GroupNavRadio_</xsl:text>
+              <xsl:text>GroupNavRadio-</xsl:text>
               <xsl:call-template name="write_group_id" />
             </xsl:attribute>
             <xsl:if test="position() = 1"><!-- Open the first group page by default. -->
@@ -846,7 +832,7 @@ input#ChannelSizeRadio_5:checked ~ footer > ol.channel_size_control > li#Channel
                 <xsl:text>state channel_maximize_state</xsl:text>
               </xsl:attribute>
               <xsl:attribute name="id">
-                <xsl:text>ChannelMaximizeCheckbox_</xsl:text>
+                <xsl:text>ChannelMaximizeCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
               </xsl:attribute>
             </xsl:element>
@@ -859,7 +845,7 @@ input#ChannelSizeRadio_5:checked ~ footer > ol.channel_size_control > li#Channel
                 <xsl:text>state channel_close_state</xsl:text>
               </xsl:attribute>
               <xsl:attribute name="id">
-                <xsl:text>ChannelCloseCheckbox_</xsl:text>
+                <xsl:text>ChannelCloseCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
               </xsl:attribute>
             </xsl:element>
@@ -919,12 +905,12 @@ input#ChannelSizeRadio_5:checked ~ footer > ol.channel_size_control > li#Channel
               <xsl:for-each select="body/outline">
                 <xsl:element name="li">
                   <xsl:attribute name="id">
-                    <xsl:text>GroupNavItem_</xsl:text>
+                    <xsl:text>GroupNavItem-</xsl:text>
                     <xsl:call-template name="write_group_id" />
                   </xsl:attribute>
                   <xsl:element name="label">
                     <xsl:attribute name="for">
-                      <xsl:text>GroupNavRadio_</xsl:text>
+                      <xsl:text>GroupNavRadio-</xsl:text>
                       <xsl:call-template name="write_group_id" />
                     </xsl:attribute>
                     <xsl:choose>
@@ -946,7 +932,7 @@ input#ChannelSizeRadio_5:checked ~ footer > ol.channel_size_control > li#Channel
             <xsl:for-each select="body/outline">
               <xsl:element name="section">
                 <xsl:attribute name="id">
-                  <xsl:text>Group_</xsl:text>
+                  <xsl:text>Group-</xsl:text>
                   <xsl:call-template name="write_group_id" />
                 </xsl:attribute>
                 <xsl:attribute name="class">
@@ -967,7 +953,7 @@ input#ChannelSizeRadio_5:checked ~ footer > ol.channel_size_control > li#Channel
                 <xsl:for-each select="outline">
                   <xsl:element name="section">
                     <xsl:attribute name="id">
-                      <xsl:text>Channel_</xsl:text>
+                      <xsl:text>Channel-</xsl:text>
                       <xsl:call-template name="write_channel_id" />
                     </xsl:attribute>
                     <xsl:attribute name="class">
@@ -1025,7 +1011,7 @@ input#ChannelSizeRadio_5:checked ~ footer > ol.channel_size_control > li#Channel
                               <xsl:text>channel_maximize</xsl:text>
                             </xsl:attribute>
                             <xsl:attribute name="for">
-                              <xsl:text>ChannelMaximizeCheckbox_</xsl:text>
+                              <xsl:text>ChannelMaximizeCheckbox-</xsl:text>
                               <xsl:call-template name="write_channel_id" />
                             </xsl:attribute>
                             <xsl:call-template name="maximize_icon" />
@@ -1036,7 +1022,7 @@ input#ChannelSizeRadio_5:checked ~ footer > ol.channel_size_control > li#Channel
                               <xsl:text>channel_close</xsl:text>
                             </xsl:attribute>
                             <xsl:attribute name="for">
-                              <xsl:text>ChannelCloseCheckbox_</xsl:text>
+                              <xsl:text>ChannelCloseCheckbox-</xsl:text>
                               <xsl:call-template name="write_channel_id" />
                             </xsl:attribute>
                             <xsl:call-template name="close_icon" />
