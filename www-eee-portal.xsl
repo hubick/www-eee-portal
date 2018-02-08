@@ -1075,14 +1075,22 @@ input#ChannelSizeRadio-5:checked ~ footer > ol.channel_size_control > li#Channel
 
         <xsl:element name="footer">
 
-          <xsl:if test="head/ownerName or head/ownerEmail or head/ownerId">
+          <xsl:if test="head/ownerName or head/ownerEmail">
             <xsl:element name="address">
 
               <xsl:if test="head/ownerName">
-                <xsl:element name="span">
+                <xsl:element name="a">
                   <xsl:attribute name="class">
                     <xsl:text>owner_name</xsl:text>
                   </xsl:attribute>
+                  <xsl:if test="head/ownerId">
+                    <xsl:attribute name="href">
+                      <xsl:value-of select="head/ownerId" />
+                    </xsl:attribute>
+                    <xsl:attribute name="target">
+                      <xsl:text>_blank</xsl:text>
+                    </xsl:attribute>
+                  </xsl:if>
                   <xsl:value-of select="head/ownerName" />
                 </xsl:element>
               </xsl:if>
