@@ -3,9 +3,9 @@
 <xsl:stylesheet version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output indent="yes" media-type="application/xhtml+xml" method="xml" omit-xml-declaration="no" doctype-system="about:legacy-compat" />
 
-  <!-- If an include param is set to 'true', a 'www-eee-portal-includes.xml' file will be parsed for content to be included in the appropriate section. -->
-  <xsl:param name="www-eee-include-header-links" select="'false'" /><!-- //html:html/html:ol[@id='header_links'] -->
-  <xsl:param name="www-eee-include-footer-links" select="'false'" /><!-- //html:html/html:ol[@id='footer_links'] -->
+  <!-- If an includes document is specified it will be parsed for content to be included in the appropriate sections. -->
+  <!-- Current includes are "//html:html/html:style[@id='custom_style']", "//html:html/html:style[@id='custom_style_active_group']", "//html:html/html:ol[@id='header_links']", "//html:html/html:ol[@id='footer_links']". -->
+  <xsl:param name="www-eee-includes-document" />
 
   <!-- Should the channel titles not be made into links to the channel content URL's? -->
   <xsl:param name="www-eee-channel-title-link-disable" select="'false'" />
@@ -16,7 +16,8 @@
   <!-- The index you want the channel size selector to default to, an integer between '1' (smallest) and '5' (largest). -->
   <xsl:param name="www-eee-channel-size-default" select="2" />
 
-  <!-- Colours. -->
+  <!-- Default Theme. -->
+  <xsl:param name="www-eee-default-theme-disable" select="'false'" />
   <xsl:param name="www-eee-body-background" select="'white'" />
   <xsl:param name="www-eee-body-foreground" select="'black'" />
   <xsl:param name="www-eee-raised-background" select="'gainsboro'" />
@@ -74,8 +75,14 @@
   </xsl:template>
 
   <xsl:template name="style_inline">
+    <xsl:param name="id" select="''" />
     <xsl:param name="style" />
     <xsl:element name="style">
+      <xsl:if test="$id">
+        <xsl:attribute name="id">
+          <xsl:value-of select="$id" />
+        </xsl:attribute>
+      </xsl:if>
       <xsl:text disable-output-escaping="yes">&#x0A;/* &lt;![CDATA[ */&#x0A;</xsl:text>
       <xsl:value-of select="$style" disable-output-escaping="yes" />
       <xsl:text>&#x0A;/* ]]</xsl:text>
@@ -332,72 +339,8 @@
         </xsl:element>
 
         <xsl:call-template name="style_inline">
+          <xsl:with-param name="id" select="'functional_style'" />
           <xsl:with-param name="style">
-
-            <xsl:text>:root {&#x0A;</xsl:text>
-
-            <xsl:text>  --www-eee-body-background: </xsl:text>
-            <xsl:value-of select="$www-eee-body-background" />
-            <xsl:text>;&#x0A;</xsl:text>
-
-            <xsl:text>  --www-eee-body-foreground: </xsl:text>
-            <xsl:value-of select="$www-eee-body-foreground" />
-            <xsl:text>;&#x0A;</xsl:text>
-
-            <xsl:text>  --www-eee-raised-background: </xsl:text>
-            <xsl:value-of select="$www-eee-raised-background" />
-            <xsl:text>;&#x0A;</xsl:text>
-
-            <xsl:text>  --www-eee-raised-foreground: </xsl:text>
-            <xsl:value-of select="$www-eee-raised-foreground" />
-            <xsl:text>;&#x0A;</xsl:text>
-
-            <xsl:text>  --www-eee-border-color: </xsl:text>
-            <xsl:value-of select="$www-eee-border-color" />
-            <xsl:text>;&#x0A;</xsl:text>
-
-            <xsl:text>  --www-eee-content-background: </xsl:text>
-            <xsl:value-of select="$www-eee-content-background" />
-            <xsl:text>;&#x0A;</xsl:text>
-
-            <xsl:text>  --www-eee-content-foreground: </xsl:text>
-            <xsl:value-of select="$www-eee-content-foreground" />
-            <xsl:text>;&#x0A;</xsl:text>
-
-            <xsl:text>  --www-eee-portal-heading-background: </xsl:text>
-            <xsl:value-of select="$www-eee-portal-heading-background" />
-            <xsl:text>;&#x0A;</xsl:text>
-
-            <xsl:text>  --www-eee-portal-heading-foreground: </xsl:text>
-            <xsl:value-of select="$www-eee-portal-heading-foreground" />
-            <xsl:text>;&#x0A;</xsl:text>
-
-            <xsl:text>  --www-eee-header-foreground: </xsl:text>
-            <xsl:value-of select="$www-eee-header-foreground" />
-            <xsl:text>;&#x0A;</xsl:text>
-
-            <xsl:text>  --www-eee-nav-active-foreground: </xsl:text>
-            <xsl:value-of select="$www-eee-nav-active-foreground" />
-            <xsl:text>;&#x0A;</xsl:text>
-
-            <xsl:text>  --www-eee-nav-inactive-foreground: </xsl:text>
-            <xsl:value-of select="$www-eee-nav-inactive-foreground" />
-            <xsl:text>;&#x0A;</xsl:text>
-
-            <xsl:text>  --www-eee-channel-title-foreground: </xsl:text>
-            <xsl:value-of select="$www-eee-channel-title-foreground" />
-            <xsl:text>;&#x0A;</xsl:text>
-
-            <xsl:text>  --www-eee-channel-control: </xsl:text>
-            <xsl:value-of select="$www-eee-channel-control" />
-            <xsl:text>;&#x0A;</xsl:text>
-
-            <xsl:text>  --www-eee-footer-foreground: </xsl:text>
-            <xsl:value-of select="$www-eee-footer-foreground" />
-            <xsl:text>;&#x0A;</xsl:text>
-
-            <xsl:text>}&#x0A;</xsl:text>
-
             <xsl:text>
 <![CDATA[
 
@@ -412,8 +355,8 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  background-color: var(--www-eee-body-background);
-  color: var(--www-eee-body-foreground);
+  background-color: white;
+  color: black;
   padding: 0;
 }
 
@@ -421,7 +364,7 @@ input.state {
   display: none;
 }
 
-input.channel_maximize_state:checked ~ main { /* Make sure 'main' doesn't stick out below the maximized channel. */
+input.channel_maximize_state:checked ~ div#middle > main { /* Make sure 'main' doesn't stick out below the maximized channel. */
   position: absolute;
   top: 0;
   left: 0;
@@ -436,13 +379,6 @@ body > header {
   justify-content: space-between;
   margin: 0;
   padding: 0;
-  background-color: var(--www-eee-raised-background);
-  color: var(--www-eee-header-foreground);
-  border-style: outset;
-  border-color: var(--www-eee-border-color);
-  border-top: none;
-  border-right: none;
-  border-left: none;
 }
 
 body > header > div#portal_heading {
@@ -450,10 +386,6 @@ body > header > div#portal_heading {
   display: flex;
   align-items: center;
   margin: 0.5rem;
-  background-color: var(--www-eee-portal-heading-background);
-  color: var(--www-eee-portal-heading-foreground);
-  border-style: inset;
-  border-color: var(--www-eee-border-color);
 }
 
 a#favicon {
@@ -515,11 +447,6 @@ body > div#middle {
 body > div#middle > nav {
   margin-top: 1rem;
   margin-right: 1rem;
-  background-color: var(--www-eee-raised-background);
-  color: var(--www-eee-nav-inactive-foreground);
-  border-style: outset;
-  border-color: var(--www-eee-border-color);
-  border-left: none;
 }
 
 body > div#middle > nav > ol {
@@ -530,8 +457,6 @@ body > div#middle > nav > ol {
 
 body > div#middle > nav > ol > li {
   margin: 0.5rem;
-  border-style: solid;
-  border-color: transparent; /* Prevent shifting when we add a border during group selection. */
   white-space: nowrap;
 }
 
@@ -539,7 +464,6 @@ body > div#middle > nav > ol > li > label {
   display: block;
   padding: 0.25rem;
   padding-left: 0.5rem;
-  font-size: larger;
   cursor: pointer;
 }
 
@@ -560,7 +484,7 @@ section.group > h2 {
 section.channel {
   display: grid;
   margin: 0;
-  background-color: var(--www-eee-body-background);
+  background-color: white;
   padding: 0;
   flex-grow: 1;
 }
@@ -569,10 +493,6 @@ div.channel_chrome {
   margin: 0.5rem;
   display: flex;
   flex-direction: column;
-  background-color: var(--www-eee-raised-background);
-  color: var(--www-eee-channel-title-foreground);
-  border-style: outset;
-  border-color: var(--www-eee-border-color);
 }
 
 div.channel_chrome > header {
@@ -587,8 +507,8 @@ div.channel_chrome > header {
 div.channel_chrome > header > h3 {
   margin: 0;
   padding: 0;
-  font-size: 1.5rem;
   white-space: nowrap;
+  font-size: 1.5rem;
 }
 
 div.channel_chrome > header > h3 > a, div.channel_chrome > header > h3 > a:link, div.channel_chrome > header > h3 > a:visited {
@@ -615,7 +535,7 @@ label.channel_maximize, label.channel_close {
 
 .channel_control_icon {
   fill: none;
-  stroke: var(--www-eee-channel-control);
+  stroke: black;
 }
 
 .channel_content {
@@ -623,11 +543,7 @@ label.channel_maximize, label.channel_close {
   flex-grow: 1;
   margin: 0.5rem;
   margin-top: 0;
-  border-style: inset;
-  border-color: var(--www-eee-border-color);
   border-width: inherit;
-  background-color: var(--www-eee-content-background);
-  color: var(--www-eee-content-foreground);
 }
 
 body > footer {
@@ -635,13 +551,6 @@ body > footer {
   align-items: center;
   justify-content: space-between;
   margin: 0;
-  background-color: var(--www-eee-raised-background);
-  color: var(--www-eee-footer-foreground);
-  border-style: outset;
-  border-color: var(--www-eee-border-color);
-  border-right: none;
-  border-bottom: none;
-  border-left: none;
 }
 
 body > footer > address {
@@ -649,7 +558,6 @@ body > footer > address {
   padding: 0;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  font-style: normal;
 }
 
 body > footer > address a, body > footer > address a:link, body > footer > address a:visited {
@@ -717,7 +625,7 @@ ol#channel_size_control > li > label {
 
 ol#channel_size_control > li > label > span {
   display: block;
-  background-color: var(--www-eee-channel-control);
+  background-color: black;
 }
 
 li#ChannelSizeItem_1 > label > span {
@@ -828,13 +736,6 @@ input#ChannelSizeRadio-5:checked ~ footer > ol#channel_size_control > li#Channel
               <xsl:call-template name="write_group_id" />
               <xsl:text> {&#x0A;  display: flex;&#x0A;}&#x0A;</xsl:text>
 
-              <!-- Highlight the navigation tab for a group when it's nav radio is checked. -->
-              <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
-              <xsl:call-template name="write_group_id" />
-              <xsl:text>:checked ~ div#middle > nav > ol > li#GroupNavItem-</xsl:text>
-              <xsl:call-template name="write_group_id" />
-              <xsl:text> {&#x0A;  background-color: var(--www-eee-body-background);&#x0A;  color: var(--www-eee-nav-active-foreground);&#x0A;  font-weight: bold;&#x0A;  border-style: inset;&#x0A;  border-color: var(--www-eee-border-color);&#x0A;  border-right: none;&#x0A;  margin-right: -0.19rem;&#x0A;}&#x0A;</xsl:text>
-
               <xsl:for-each select="outline">
 
                 <!-- Maximize the channel section when it's maximize box is checked. -->
@@ -864,6 +765,193 @@ input#ChannelSizeRadio-5:checked ~ footer > ol#channel_size_control > li#Channel
 
           </xsl:with-param>
         </xsl:call-template><!-- style_inline -->
+
+        <xsl:if test="$www-eee-default-theme-disable = 'false'">
+          <xsl:call-template name="style_inline">
+            <xsl:with-param name="id" select="'default_theme_style'" />
+            <xsl:with-param name="style">
+
+              <xsl:text>:root {&#x0A;</xsl:text>
+
+              <xsl:text>  --www-eee-body-background: </xsl:text>
+              <xsl:value-of select="$www-eee-body-background" />
+              <xsl:text>;&#x0A;</xsl:text>
+
+              <xsl:text>  --www-eee-body-foreground: </xsl:text>
+              <xsl:value-of select="$www-eee-body-foreground" />
+              <xsl:text>;&#x0A;</xsl:text>
+
+              <xsl:text>  --www-eee-raised-background: </xsl:text>
+              <xsl:value-of select="$www-eee-raised-background" />
+              <xsl:text>;&#x0A;</xsl:text>
+
+              <xsl:text>  --www-eee-raised-foreground: </xsl:text>
+              <xsl:value-of select="$www-eee-raised-foreground" />
+              <xsl:text>;&#x0A;</xsl:text>
+
+              <xsl:text>  --www-eee-border-color: </xsl:text>
+              <xsl:value-of select="$www-eee-border-color" />
+              <xsl:text>;&#x0A;</xsl:text>
+
+              <xsl:text>  --www-eee-content-background: </xsl:text>
+              <xsl:value-of select="$www-eee-content-background" />
+              <xsl:text>;&#x0A;</xsl:text>
+
+              <xsl:text>  --www-eee-content-foreground: </xsl:text>
+              <xsl:value-of select="$www-eee-content-foreground" />
+              <xsl:text>;&#x0A;</xsl:text>
+
+              <xsl:text>  --www-eee-portal-heading-background: </xsl:text>
+              <xsl:value-of select="$www-eee-portal-heading-background" />
+              <xsl:text>;&#x0A;</xsl:text>
+
+              <xsl:text>  --www-eee-portal-heading-foreground: </xsl:text>
+              <xsl:value-of select="$www-eee-portal-heading-foreground" />
+              <xsl:text>;&#x0A;</xsl:text>
+
+              <xsl:text>  --www-eee-header-foreground: </xsl:text>
+              <xsl:value-of select="$www-eee-header-foreground" />
+              <xsl:text>;&#x0A;</xsl:text>
+
+              <xsl:text>  --www-eee-nav-active-foreground: </xsl:text>
+              <xsl:value-of select="$www-eee-nav-active-foreground" />
+              <xsl:text>;&#x0A;</xsl:text>
+
+              <xsl:text>  --www-eee-nav-inactive-foreground: </xsl:text>
+              <xsl:value-of select="$www-eee-nav-inactive-foreground" />
+              <xsl:text>;&#x0A;</xsl:text>
+
+              <xsl:text>  --www-eee-channel-title-foreground: </xsl:text>
+              <xsl:value-of select="$www-eee-channel-title-foreground" />
+              <xsl:text>;&#x0A;</xsl:text>
+
+              <xsl:text>  --www-eee-channel-control: </xsl:text>
+              <xsl:value-of select="$www-eee-channel-control" />
+              <xsl:text>;&#x0A;</xsl:text>
+
+              <xsl:text>  --www-eee-footer-foreground: </xsl:text>
+              <xsl:value-of select="$www-eee-footer-foreground" />
+              <xsl:text>;&#x0A;</xsl:text>
+
+              <xsl:text>}&#x0A;</xsl:text>
+
+              <xsl:text>
+<![CDATA[
+
+body {
+  background-color: var(--www-eee-body-background);
+  color: var(--www-eee-body-foreground);
+}
+
+body > header {
+  background-color: var(--www-eee-raised-background);
+  color: var(--www-eee-header-foreground);
+  border-style: outset;
+  border-color: var(--www-eee-border-color);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+
+body > header > div#portal_heading {
+  background-color: var(--www-eee-portal-heading-background);
+  color: var(--www-eee-portal-heading-foreground);
+  border-style: inset;
+  border-color: var(--www-eee-border-color);
+}
+
+body > div#middle > nav {
+  background-color: var(--www-eee-raised-background);
+  color: var(--www-eee-nav-inactive-foreground);
+  border-style: outset;
+  border-color: var(--www-eee-border-color);
+  border-left: none;
+}
+
+body > div#middle > nav > ol > li > label {
+  font-size: larger;
+}
+
+section.channel {
+  background-color: var(--www-eee-body-background);
+}
+
+div.channel_chrome {
+  background-color: var(--www-eee-raised-background);
+  color: var(--www-eee-channel-title-foreground);
+  border-style: outset;
+  border-color: var(--www-eee-border-color);
+}
+
+.channel_control_icon {
+  stroke: var(--www-eee-channel-control);
+}
+
+.channel_content {
+  border-style: inset;
+  border-color: var(--www-eee-border-color);
+  background-color: var(--www-eee-content-background);
+  color: var(--www-eee-content-foreground);
+}
+
+body > footer {
+  background-color: var(--www-eee-raised-background);
+  color: var(--www-eee-footer-foreground);
+  border-style: outset;
+  border-color: var(--www-eee-border-color);
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+}
+
+body > footer > address {
+  font-style: normal;
+}
+
+ol#channel_size_control > li > label > span {
+  background-color: var(--www-eee-channel-control);
+}
+
+]]>
+              </xsl:text>
+
+              <xsl:for-each select="body/outline">
+
+                <!-- Highlight the navigation tab for a group when it's nav radio is checked. -->
+                <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
+                <xsl:call-template name="write_group_id" />
+                <xsl:text>:checked ~ div#middle > nav > ol > li#GroupNavItem-</xsl:text>
+                <xsl:call-template name="write_group_id" />
+                <xsl:text> {&#x0A;  background-color: var(--www-eee-body-background);&#x0A;  color: var(--www-eee-nav-active-foreground);&#x0A;  font-weight: bold;&#x0A;  border-style: inset;&#x0A;  border-color: var(--www-eee-border-color);&#x0A;  border-right: none;&#x0A;  margin-right: -0.19rem;&#x0A;}&#x0A;</xsl:text>
+
+              </xsl:for-each>
+
+            </xsl:with-param>
+          </xsl:call-template><!-- style_inline -->
+        </xsl:if><!-- $www-eee-default-theme-disable = 'false' -->
+
+        <xsl:if test="($www-eee-includes-document) and ((document($www-eee-includes-document)//html:html/html:style[@id='custom_style']) or (document($www-eee-includes-document)//html:html/html:style[@id='custom_style_active_group']))">
+          <xsl:call-template name="style_inline">
+            <xsl:with-param name="id" select="'custom_style'" />
+            <xsl:with-param name="style">
+
+              <xsl:apply-templates select="document($www-eee-includes-document)//html:html/html:style[@id='custom_style']/node()" mode="identity" />
+
+              <xsl:if test="document($www-eee-includes-document)//html:html/html:style[@id='custom_style_active_group']">
+                <xsl:for-each select="body/outline">
+                  <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
+                  <xsl:call-template name="write_group_id" />
+                  <xsl:text>:checked ~ div#middle > nav > ol > li#GroupNavItem-</xsl:text>
+                  <xsl:call-template name="write_group_id" />
+                  <xsl:text> {&#x0A;</xsl:text>
+                  <xsl:apply-templates select="document($www-eee-includes-document)//html:html/html:style[@id='custom_style_active_group']/node()" mode="identity" />
+                  <xsl:text>}&#x0A;</xsl:text>
+                </xsl:for-each>
+              </xsl:if>
+
+            </xsl:with-param>
+          </xsl:call-template><!-- style_inline -->
+        </xsl:if>
 
       </xsl:element><!-- head -->
 
@@ -966,8 +1054,8 @@ input#ChannelSizeRadio-5:checked ~ footer > ol#channel_size_control > li#Channel
 
             </xsl:element><!-- div#portal_heading -->
 
-            <xsl:if test="$www-eee-include-header-links != 'false'">
-              <xsl:apply-templates select="document('www-eee-portal-includes.xml')//html:html/html:ol[@id='header_links']" mode="identity" />
+            <xsl:if test="$www-eee-includes-document">
+              <xsl:apply-templates select="document($www-eee-includes-document)//html:html/html:ol[@id='header_links']" mode="identity" />
             </xsl:if>
 
           </xsl:element><!-- header -->
@@ -1198,8 +1286,8 @@ input#ChannelSizeRadio-5:checked ~ footer > ol#channel_size_control > li#Channel
             </xsl:element><!-- address -->
           </xsl:if><!-- owner info -->
 
-          <xsl:if test="$www-eee-include-footer-links != 'false'">
-            <xsl:apply-templates select="document('www-eee-portal-includes.xml')//html:html/html:ol[@id='footer_links']" mode="identity" />
+          <xsl:if test="$www-eee-includes-document">
+            <xsl:apply-templates select="document($www-eee-includes-document)//html:html/html:ol[@id='footer_links']" mode="identity" />
           </xsl:if>
 
           <xsl:element name="ol">
