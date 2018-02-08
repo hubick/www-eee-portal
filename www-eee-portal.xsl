@@ -76,11 +76,17 @@
 
   <xsl:template name="style_inline">
     <xsl:param name="id" select="''" />
+    <xsl:param name="title" select="''" />
     <xsl:param name="style" />
     <xsl:element name="style">
       <xsl:if test="$id">
         <xsl:attribute name="id">
           <xsl:value-of select="$id" />
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:if test="$title">
+        <xsl:attribute name="title">
+          <xsl:value-of select="$title" />
         </xsl:attribute>
       </xsl:if>
       <xsl:text disable-output-escaping="yes">&#x0A;/* &lt;![CDATA[ */&#x0A;</xsl:text>
