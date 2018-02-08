@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2017-2018 by Chris Hubick <chris@hubick.com>. All Rights Reserved. This work is licensed under the terms of the "GNU AFFERO GENERAL PUBLIC LICENSE" version 3, as published by the Free Software Foundation <http://www.gnu.org/licenses/>. -->
-<xsl:stylesheet version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output indent="yes" media-type="application/xhtml+xml" method="xml" omit-xml-declaration="no" doctype-system="about:legacy-compat" />
 
+  <!-- If an include param is set to 'true', a 'www-eee-portal-includes.xml' file will be parsed for content to be included in the appropriate section. -->
+  <xsl:param name="www-eee-include-header-links" select="'false'" /><!-- //html:html/html:ol[@id='header_links'] -->
+  <xsl:param name="www-eee-include-footer-links" select="'false'" /><!-- //html:html/html:ol[@id='footer_links'] -->
+
+  <!-- Should the channel titles not be made into links to the channel content URL's? -->
   <xsl:param name="www-eee-channel-title-link-disable" select="'false'" />
+
+  <!-- The channel content iframe specifies an empty 'sandbox' attribute by default (most secure), any additional permissions can be specified here. -->
   <xsl:param name="www-eee-channel-sandbox" select="''" />
+
+  <!-- The index you want the channel size selector to default to, an integer between '1' (smallest) and '5' (largest). -->
   <xsl:param name="www-eee-channel-size-default" select="2" />
+
+  <!-- Colours. -->
   <xsl:param name="www-eee-body-background" select="'white'" />
   <xsl:param name="www-eee-body-foreground" select="'black'" />
   <xsl:param name="www-eee-raised-background" select="'gainsboro'" />
@@ -15,11 +26,18 @@
   <xsl:param name="www-eee-content-foreground" select="'var(--www-eee-body-foreground)'" />
   <xsl:param name="www-eee-portal-heading-background" select="'var(--www-eee-content-background)'" />
   <xsl:param name="www-eee-portal-heading-foreground" select="'var(--www-eee-content-foreground)'" />
+  <xsl:param name="www-eee-header-foreground" select="'gray'" />
   <xsl:param name="www-eee-nav-active-foreground" select="'var(--www-eee-body-foreground)'" />
   <xsl:param name="www-eee-nav-inactive-foreground" select="'var(--www-eee-raised-foreground)'" />
   <xsl:param name="www-eee-channel-title-foreground" select="'var(--www-eee-raised-foreground)'" />
   <xsl:param name="www-eee-channel-control" select="'var(--www-eee-raised-foreground)'" />
   <xsl:param name="www-eee-footer-foreground" select="'gray'" />
+
+  <xsl:template match="@*|node()" mode="identity">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()" mode="identity" />
+    </xsl:copy>
+  </xsl:template>
 
   <!-- Create a valid XML ID value from the text input. -->
   <xsl:template name="encode_id">
@@ -354,6 +372,10 @@
             <xsl:value-of select="$www-eee-portal-heading-foreground" />
             <xsl:text>;&#x0A;</xsl:text>
 
+            <xsl:text>  --www-eee-header-foreground: </xsl:text>
+            <xsl:value-of select="$www-eee-header-foreground" />
+            <xsl:text>;&#x0A;</xsl:text>
+
             <xsl:text>  --www-eee-nav-active-foreground: </xsl:text>
             <xsl:value-of select="$www-eee-nav-active-foreground" />
             <xsl:text>;&#x0A;</xsl:text>
@@ -411,10 +433,11 @@ input.channel_maximize_state:checked ~ main { /* Make sure 'main' doesn't stick 
 body > header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin: 0;
   padding: 0;
   background-color: var(--www-eee-raised-background);
-  color: var(--www-eee-raised-foreground);
+  color: var(--www-eee-header-foreground);
   border-style: outset;
   border-color: var(--www-eee-border-color);
   border-top: none;
@@ -422,7 +445,7 @@ body > header {
   border-left: none;
 }
 
-body > header > div.portal_heading {
+body > header > div#portal_heading {
   align-self: flex-start;
   display: flex;
   align-items: center;
@@ -433,7 +456,7 @@ body > header > div.portal_heading {
   border-color: var(--www-eee-border-color);
 }
 
-a.favicon {
+a#favicon {
   display: grid;
   margin: 0;
   padding: 0;
@@ -442,14 +465,14 @@ a.favicon {
   text-decoration: none;
 }
 
-img.favicon {
+a#favicon img {
   width: 2rem;
   height: 2rem;
   margin-left: 0.25rem;
   margin-right: 0.25rem;
 }
 
-body > header > div.portal_heading > h1 {
+body > header > div#portal_heading > h1 {
   margin: 0;
   padding: 0;
   padding-right: 1rem;
@@ -457,13 +480,39 @@ body > header > div.portal_heading > h1 {
   white-space: nowrap;
 }
 
-body > div.middle {
+body > header > ol#header_links {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem;
+  padding: 0;
+}
+
+body > header > ol#header_links > li {
+  display: grid;
+  margin: 0;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+
+body > header > ol#header_links > li > a, body > header > ol#header_links > li > a:link, body > header > ol#header_links > li > a:visited {
+  display: grid;
+  text-decoration: none;
+  color: inherit;
+}
+
+body > header > ol#header_links > li > a > img {
+  width: 2rem;
+  height: 2rem;
+}
+
+body > div#middle {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
-body > div.middle > nav {
+body > div#middle > nav {
   margin-top: 1rem;
   margin-right: 1rem;
   background-color: var(--www-eee-raised-background);
@@ -473,20 +522,20 @@ body > div.middle > nav {
   border-left: none;
 }
 
-body > div.middle > nav > ol {
+body > div#middle > nav > ol {
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
 
-body > div.middle > nav > ol > li {
+body > div#middle > nav > ol > li {
   margin: 0.5rem;
   border-style: solid;
   border-color: transparent; /* Prevent shifting when we add a border during group selection. */
   white-space: nowrap;
 }
 
-body > div.middle > nav > ol > li > label {
+body > div#middle > nav > ol > li > label {
   display: block;
   padding: 0.25rem;
   padding-left: 0.5rem;
@@ -494,7 +543,7 @@ body > div.middle > nav > ol > li > label {
   cursor: pointer;
 }
 
-body > div.middle > main {
+body > div#middle > main {
   flex-grow: 1;
 }
 
@@ -542,7 +591,7 @@ div.channel_chrome > header > h3 {
   white-space: nowrap;
 }
 
-div.channel_chrome > header > h3 > a:link, div.channel_chrome > header > h3 > a:visited {
+div.channel_chrome > header > h3 > a, div.channel_chrome > header > h3 > a:link, div.channel_chrome > header > h3 > a:visited {
   text-decoration: none;
   color: inherit;
 }
@@ -597,25 +646,55 @@ body > footer {
 
 body > footer > address {
   margin: 0.5rem;
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
   padding: 0;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   font-style: normal;
 }
 
-body > footer > address a:link, body > footer > address a:visited {
+body > footer > address a, body > footer > address a:link, body > footer > address a:visited {
   text-decoration: none;
   color: inherit;
 }
 
-ol.channel_size_control {
-  display: none;
+body > footer > ol#footer_links {
+  display: flex;
   align-items: center;
-  margin: 0.25rem;
+  margin: 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
   padding: 0;
 }
 
-ol.channel_size_control > li {
+body > footer > ol#footer_links > li {
+  display: grid;
+  margin: 0;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+
+body > footer > ol#footer_links > li > a, body > footer > ol#footer_links > li > a:link, body > footer > ol#footer_links > li > a:visited {
+  display: grid;
+  text-decoration: none;
+  color: inherit;
+}
+
+body > footer > ol#footer_links > li > a > img {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+ol#channel_size_control {
+  display: none;
+  align-items: center;
+  margin: 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  padding: 0;
+}
+
+ol#channel_size_control > li {
   display: flex;
   flex-grow: 1;
   margin: 0;
@@ -626,7 +705,7 @@ ol.channel_size_control > li {
   height: 1.8rem;
 }
 
-ol.channel_size_control > li > label {
+ol#channel_size_control > li > label {
   display: flex;
   flex-grow: 1;
   align-items: center;
@@ -636,7 +715,7 @@ ol.channel_size_control > li > label {
   border-color: transparent;
 }
 
-ol.channel_size_control > li > label > span {
+ol#channel_size_control > li > label > span {
   display: block;
   background-color: var(--www-eee-channel-control);
 }
@@ -666,22 +745,22 @@ li#ChannelSizeItem_5 > label > span {
   height: 1.5em;
 }
 
-input#ChannelSizeRadio-1:checked ~ footer > ol.channel_size_control > li#ChannelSizeItem_1 > label,
-input#ChannelSizeRadio-2:checked ~ footer > ol.channel_size_control > li#ChannelSizeItem_2 > label,
-input#ChannelSizeRadio-3:checked ~ footer > ol.channel_size_control > li#ChannelSizeItem_3 > label,
-input#ChannelSizeRadio-4:checked ~ footer > ol.channel_size_control > li#ChannelSizeItem_4 > label,
-input#ChannelSizeRadio-5:checked ~ footer > ol.channel_size_control > li#ChannelSizeItem_5 > label {
+input#ChannelSizeRadio-1:checked ~ footer > ol#channel_size_control > li#ChannelSizeItem_1 > label,
+input#ChannelSizeRadio-2:checked ~ footer > ol#channel_size_control > li#ChannelSizeItem_2 > label,
+input#ChannelSizeRadio-3:checked ~ footer > ol#channel_size_control > li#ChannelSizeItem_3 > label,
+input#ChannelSizeRadio-4:checked ~ footer > ol#channel_size_control > li#ChannelSizeItem_4 > label,
+input#ChannelSizeRadio-5:checked ~ footer > ol#channel_size_control > li#ChannelSizeItem_5 > label {
   border-color: red;
 }
 
 @media (min-width: 50rem) {
 
-  body > div.middle {
+  body > div#middle {
     flex-direction: row;
     align-items: flex-start;
   }
 
-  body > div.middle > nav {
+  body > div#middle > nav {
     margin-right: 0;
   }
 
@@ -691,47 +770,47 @@ input#ChannelSizeRadio-5:checked ~ footer > ol.channel_size_control > li#Channel
     flex-wrap: wrap;
   }
 
-  input#ChannelSizeRadio-1:checked ~ div.middle > main > section.group > section.channel {
+  input#ChannelSizeRadio-1:checked ~ div#middle > main > section.group > section.channel {
     flex-basis: 15rem;
   }
 
-  input#ChannelSizeRadio-1:checked ~ div.middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
+  input#ChannelSizeRadio-1:checked ~ div#middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
     flex-basis: 30rem;
   }
 
-  input#ChannelSizeRadio-2:checked ~ div.middle > main > section.group > section.channel {
+  input#ChannelSizeRadio-2:checked ~ div#middle > main > section.group > section.channel {
     flex-basis: 25rem;
   }
 
-  input#ChannelSizeRadio-2:checked ~ div.middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
+  input#ChannelSizeRadio-2:checked ~ div#middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
     flex-basis: 35rem;
   }
 
-  input#ChannelSizeRadio-3:checked ~ div.middle > main > section.group > section.channel {
+  input#ChannelSizeRadio-3:checked ~ div#middle > main > section.group > section.channel {
     flex-basis: 35rem;
   }
 
-  input#ChannelSizeRadio-3:checked ~ div.middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
+  input#ChannelSizeRadio-3:checked ~ div#middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
     flex-basis: 40rem;
   }
 
-  input#ChannelSizeRadio-4:checked ~ div.middle > main > section.group > section.channel {
+  input#ChannelSizeRadio-4:checked ~ div#middle > main > section.group > section.channel {
     flex-basis: 50rem;
   }
 
-  input#ChannelSizeRadio-4:checked ~ div.middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
+  input#ChannelSizeRadio-4:checked ~ div#middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
     flex-basis: 50rem;
   }
 
-  input#ChannelSizeRadio-5:checked ~ div.middle > main > section.group > section.channel {
+  input#ChannelSizeRadio-5:checked ~ div#middle > main > section.group > section.channel {
     flex-basis: 70rem;
   }
 
-  input#ChannelSizeRadio-5:checked ~ div.middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
+  input#ChannelSizeRadio-5:checked ~ div#middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
     flex-basis: 70rem;
   }
 
-  ol.channel_size_control {
+  ol#channel_size_control {
     display: flex;
   }
 
@@ -745,14 +824,14 @@ input#ChannelSizeRadio-5:checked ~ footer > ol.channel_size_control > li#Channel
               <!-- Display the content section for a group when it's nav radio is checked. -->
               <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
               <xsl:call-template name="write_group_id" />
-              <xsl:text>:checked ~ div.middle > main > section#Group-</xsl:text>
+              <xsl:text>:checked ~ div#middle > main > section#Group-</xsl:text>
               <xsl:call-template name="write_group_id" />
               <xsl:text> {&#x0A;  display: flex;&#x0A;}&#x0A;</xsl:text>
 
               <!-- Highlight the navigation tab for a group when it's nav radio is checked. -->
               <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
               <xsl:call-template name="write_group_id" />
-              <xsl:text>:checked ~ div.middle > nav > ol > li#GroupNavItem-</xsl:text>
+              <xsl:text>:checked ~ div#middle > nav > ol > li#GroupNavItem-</xsl:text>
               <xsl:call-template name="write_group_id" />
               <xsl:text> {&#x0A;  background-color: var(--www-eee-body-background);&#x0A;  color: var(--www-eee-nav-active-foreground);&#x0A;  font-weight: bold;&#x0A;  border-style: inset;&#x0A;  border-color: var(--www-eee-border-color);&#x0A;  border-right: none;&#x0A;  margin-right: -0.19rem;&#x0A;}&#x0A;</xsl:text>
 
@@ -761,21 +840,21 @@ input#ChannelSizeRadio-5:checked ~ footer > ol.channel_size_control > li#Channel
                 <!-- Maximize the channel section when it's maximize box is checked. -->
                 <xsl:text>&#x0A;input#ChannelMaximizeCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text>:checked ~ div.middle > main > section.group > section#Channel-</xsl:text>
+                <xsl:text>:checked ~ div#middle > main > section.group > section#Channel-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text> {&#x0A;  position: absolute;&#x0A;  width: 100%;&#x0A;  height: 100%;&#x0A;  top: 0;&#x0A;  left: 0;&#x0A;}&#x0A;</xsl:text>
 
                 <!-- Don't display the channel close control when it's maximize box is checked. -->
                 <xsl:text>&#x0A;input#ChannelMaximizeCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text>:checked ~ div.middle > main > section.group > section#Channel-</xsl:text>
+                <xsl:text>:checked ~ div#middle > main > section.group > section#Channel-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text> > div.channel_chrome > header > div.channel_controls > label.channel_close {&#x0A;  display: none;&#x0A;}&#x0A;</xsl:text>
 
                 <!-- Don't display the channel when it's close box is checked. -->
                 <xsl:text>&#x0A;input#ChannelCloseCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text>:checked ~ div.middle > main > section.group > section#Channel-</xsl:text>
+                <xsl:text>:checked ~ div#middle > main > section.group > section#Channel-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text> {&#x0A;  display: none;&#x0A;}&#x0A;</xsl:text>
 
@@ -853,12 +932,12 @@ input#ChannelSizeRadio-5:checked ~ footer > ol.channel_size_control > li#Channel
           <xsl:element name="header">
 
             <xsl:element name="div">
-              <xsl:attribute name="class">
+              <xsl:attribute name="id">
                 <xsl:text>portal_heading</xsl:text>
               </xsl:attribute>
 
               <xsl:element name="a">
-                <xsl:attribute name="class">
+                <xsl:attribute name="id">
                   <xsl:text>favicon</xsl:text>
                 </xsl:attribute>
                 <xsl:if test="head/ownerId">
@@ -870,9 +949,6 @@ input#ChannelSizeRadio-5:checked ~ footer > ol.channel_size_control > li#Channel
                   </xsl:attribute>
                 </xsl:if>
                 <xsl:element name="img">
-                  <xsl:attribute name="class">
-                    <xsl:text>favicon</xsl:text>
-                  </xsl:attribute>
                   <xsl:attribute name="src">
                     <xsl:text>favicon.svg</xsl:text>
                   </xsl:attribute>
@@ -888,13 +964,17 @@ input#ChannelSizeRadio-5:checked ~ footer > ol.channel_size_control > li#Channel
                 <xsl:value-of select="head/title" />
               </xsl:element>
 
-            </xsl:element><!-- div.portal_heading -->
+            </xsl:element><!-- div#portal_heading -->
+
+            <xsl:if test="$www-eee-include-header-links != 'false'">
+              <xsl:apply-templates select="document('www-eee-portal-includes.xml')//html:html/html:ol[@id='header_links']" mode="identity" />
+            </xsl:if>
 
           </xsl:element><!-- header -->
         </xsl:if>
 
         <xsl:element name="div">
-          <xsl:attribute name="class">
+          <xsl:attribute name="id">
             <xsl:text>middle</xsl:text>
           </xsl:attribute>
 
@@ -1080,7 +1160,7 @@ input#ChannelSizeRadio-5:checked ~ footer > ol.channel_size_control > li#Channel
 
               <xsl:if test="head/ownerName">
                 <xsl:element name="a">
-                  <xsl:attribute name="class">
+                  <xsl:attribute name="id">
                     <xsl:text>owner_name</xsl:text>
                   </xsl:attribute>
                   <xsl:if test="head/ownerId">
@@ -1100,7 +1180,7 @@ input#ChannelSizeRadio-5:checked ~ footer > ol.channel_size_control > li#Channel
                   <xsl:text> </xsl:text>
                 </xsl:if>
                 <xsl:element name="span">
-                  <xsl:attribute name="class">
+                  <xsl:attribute name="id">
                     <xsl:text>owner_email</xsl:text>
                   </xsl:attribute>
                   <xsl:text>&lt;</xsl:text>
@@ -1118,8 +1198,12 @@ input#ChannelSizeRadio-5:checked ~ footer > ol.channel_size_control > li#Channel
             </xsl:element><!-- address -->
           </xsl:if><!-- owner info -->
 
+          <xsl:if test="$www-eee-include-footer-links != 'false'">
+            <xsl:apply-templates select="document('www-eee-portal-includes.xml')//html:html/html:ol[@id='footer_links']" mode="identity" />
+          </xsl:if>
+
           <xsl:element name="ol">
-            <xsl:attribute name="class">
+            <xsl:attribute name="id">
               <xsl:text>channel_size_control</xsl:text>
             </xsl:attribute>
             <xsl:call-template name="channel_size_label" />
