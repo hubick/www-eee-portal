@@ -5,6 +5,7 @@
 
   <xsl:param name="www-eee-channel-title-link-disable" select="'false'" />
   <xsl:param name="www-eee-channel-sandbox" select="''" />
+  <xsl:param name="www-eee-channel-size-default" select="2" />
   <xsl:param name="www-eee-body-background" select="'white'" />
   <xsl:param name="www-eee-body-foreground" select="'black'" />
   <xsl:param name="www-eee-raised-background" select="'gainsboro'" />
@@ -213,7 +214,6 @@
   <xsl:template name="channel_size_input">
     <xsl:param name="i" select="1" />
     <xsl:param name="count" select="5" />
-    <xsl:param name="def" select="2" /><!-- If you want to change the default channel size selection, this is where you do it. -->
 
     <xsl:element name="input">
       <xsl:attribute name="type">
@@ -229,7 +229,7 @@
         <xsl:text>ChannelSizeRadio-</xsl:text>
         <xsl:value-of select="$i" />
       </xsl:attribute>
-      <xsl:if test="$i = $def">
+      <xsl:if test="$i = $www-eee-channel-size-default">
         <xsl:attribute name="checked">
           <xsl:text>checked</xsl:text>
         </xsl:attribute>
@@ -243,9 +243,6 @@
         </xsl:with-param>
         <xsl:with-param name="count">
           <xsl:value-of select="$count" />
-        </xsl:with-param>
-        <xsl:with-param name="def">
-          <xsl:value-of select="$def" />
         </xsl:with-param>
       </xsl:call-template>
     </xsl:if>
