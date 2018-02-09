@@ -752,7 +752,14 @@ input#ChannelSizeRadio-5:checked ~ div#content > footer > ol#channel_size_contro
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text>:checked ~ div#content > div#middle > main > section.group > section#Channel-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text> {&#x0A;  position: absolute;&#x0A;  width: 100%;&#x0A;  height: 100%;&#x0A;  top: 0;&#x0A;  left: 0;&#x0A;  overflow: scroll;&#x0A;}&#x0A;</xsl:text>
+                <xsl:text> {&#x0A;  position: absolute;&#x0A;  width: 100%;&#x0A;  height: 100%;&#x0A;  top: 0;&#x0A;  left: 0;&#x0A;  flex-basis: auto;&#x0A;}&#x0A;</xsl:text>
+
+                <!-- Don't set channel_content flex-basis when maximized, as it will be positioned to fill the screen (which will then determine it's size) and this could cause overflow. -->
+                <xsl:text>&#x0A;input#ChannelMaximizeCheckbox-</xsl:text>
+                <xsl:call-template name="write_channel_id" />
+                <xsl:text>:checked ~ div#content > div#middle > main > section.group > section#Channel-</xsl:text>
+                <xsl:call-template name="write_channel_id" />
+                <xsl:text> > div.channel_chrome > .channel_content {&#x0A;  flex-basis: auto;&#x0A;}&#x0A;</xsl:text>
 
                 <!-- Don't display the channel close control when it's maximize box is checked. -->
                 <xsl:text>&#x0A;input#ChannelMaximizeCheckbox-</xsl:text>
