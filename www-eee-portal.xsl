@@ -351,26 +351,29 @@
 <![CDATA[
 
 html {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   min-height: 100%;
 }
 
 body {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   margin: 0;
   background-color: white;
   color: black;
   padding: 0;
 }
 
+div#content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 input.state {
   display: none;
 }
 
-input.channel_maximize_state:checked ~ div#middle > main { /* Make sure 'main' doesn't stick out below the maximized channel. */
+input.channel_maximize_state:checked ~ div#content { /* Make sure content doesn't stick out below the maximized channel. */
   position: absolute;
   top: 0;
   left: 0;
@@ -379,7 +382,7 @@ input.channel_maximize_state:checked ~ div#middle > main { /* Make sure 'main' d
   overflow: hidden;
 }
 
-body > header {
+div#content > header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -387,7 +390,7 @@ body > header {
   padding: 0;
 }
 
-body > header > div#portal_heading {
+div#portal_heading {
   align-self: flex-start;
   display: flex;
   align-items: center;
@@ -410,7 +413,7 @@ a#favicon img {
   margin-right: 0.25rem;
 }
 
-body > header > div#portal_heading > h1 {
+div#portal_heading > h1 {
   margin: 0;
   padding: 0;
   padding-right: 1rem;
@@ -418,14 +421,14 @@ body > header > div#portal_heading > h1 {
   white-space: nowrap;
 }
 
-body > header > ol#header_links {
+ol#header_links {
   display: flex;
   align-items: center;
   margin: 0.5rem;
   padding: 0;
 }
 
-body > header > ol#header_links > li {
+ol#header_links > li {
   display: grid;
   margin: 0;
   margin-right: 0.5rem;
@@ -433,47 +436,47 @@ body > header > ol#header_links > li {
   white-space: nowrap;
 }
 
-body > header > ol#header_links > li > a, body > header > ol#header_links > li > a:link, body > header > ol#header_links > li > a:visited {
+ol#header_links > li > a, ol#header_links > li > a:link, ol#header_links > li > a:visited {
   display: grid;
   text-decoration: none;
   color: inherit;
 }
 
-body > header > ol#header_links > li > a > img {
+ol#header_links > li > a > img {
   width: 2rem;
   height: 2rem;
 }
 
-body > div#middle {
+div#middle {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
-body > div#middle > nav {
+div#middle > nav {
   margin-top: 1rem;
   margin-right: 1rem;
 }
 
-body > div#middle > nav > ol {
+div#middle > nav > ol {
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
 
-body > div#middle > nav > ol > li {
+div#middle > nav > ol > li {
   margin: 0.5rem;
   white-space: nowrap;
 }
 
-body > div#middle > nav > ol > li > label {
+div#middle > nav > ol > li > label {
   display: block;
   padding: 0.25rem;
   padding-left: 0.5rem;
   cursor: pointer;
 }
 
-body > div#middle > main {
+div#middle > main {
   flex-grow: 1;
 }
 
@@ -552,26 +555,26 @@ label.channel_maximize, label.channel_close {
   border-width: inherit;
 }
 
-body > footer {
+div#content > footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 0;
 }
 
-body > footer > address {
+div#content > footer > address {
   margin: 0.5rem;
   padding: 0;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
 
-body > footer > address a, body > footer > address a:link, body > footer > address a:visited {
+div#content > footer > address a, div#content > footer > address a:link, div#content > footer > address a:visited {
   text-decoration: none;
   color: inherit;
 }
 
-body > footer > ol#footer_links {
+ol#footer_links {
   display: flex;
   align-items: center;
   margin: 0.5rem;
@@ -580,7 +583,7 @@ body > footer > ol#footer_links {
   padding: 0;
 }
 
-body > footer > ol#footer_links > li {
+ol#footer_links > li {
   display: grid;
   margin: 0;
   margin-right: 0.5rem;
@@ -588,13 +591,13 @@ body > footer > ol#footer_links > li {
   white-space: nowrap;
 }
 
-body > footer > ol#footer_links > li > a, body > footer > ol#footer_links > li > a:link, body > footer > ol#footer_links > li > a:visited {
+ol#footer_links > li > a, ol#footer_links > li > a:link, ol#footer_links > li > a:visited {
   display: grid;
   text-decoration: none;
   color: inherit;
 }
 
-body > footer > ol#footer_links > li > a > img {
+ol#footer_links > li > a > img {
   width: 1.8rem;
   height: 1.8rem;
 }
@@ -659,22 +662,22 @@ li#ChannelSizeItem_5 > label > span {
   height: 1.5em;
 }
 
-input#ChannelSizeRadio-1:checked ~ footer > ol#channel_size_control > li#ChannelSizeItem_1 > label,
-input#ChannelSizeRadio-2:checked ~ footer > ol#channel_size_control > li#ChannelSizeItem_2 > label,
-input#ChannelSizeRadio-3:checked ~ footer > ol#channel_size_control > li#ChannelSizeItem_3 > label,
-input#ChannelSizeRadio-4:checked ~ footer > ol#channel_size_control > li#ChannelSizeItem_4 > label,
-input#ChannelSizeRadio-5:checked ~ footer > ol#channel_size_control > li#ChannelSizeItem_5 > label {
+input#ChannelSizeRadio-1:checked ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_1 > label,
+input#ChannelSizeRadio-2:checked ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_2 > label,
+input#ChannelSizeRadio-3:checked ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_3 > label,
+input#ChannelSizeRadio-4:checked ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_4 > label,
+input#ChannelSizeRadio-5:checked ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_5 > label {
   border-color: red;
 }
 
 @media (min-width: 50rem) {
 
-  body > div#middle {
+  div#middle {
     flex-direction: row;
     align-items: flex-start;
   }
 
-  body > div#middle > nav {
+  div#middle > nav {
     margin-right: 0;
   }
 
@@ -684,43 +687,43 @@ input#ChannelSizeRadio-5:checked ~ footer > ol#channel_size_control > li#Channel
     flex-wrap: wrap;
   }
 
-  input#ChannelSizeRadio-1:checked ~ div#middle > main > section.group > section.channel {
+  input#ChannelSizeRadio-1:checked ~ div#content > div#middle > main > section.group > section.channel {
     flex-basis: 15rem;
   }
 
-  input#ChannelSizeRadio-1:checked ~ div#middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
+  input#ChannelSizeRadio-1:checked ~ div#content > div#middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
     flex-basis: 30rem;
   }
 
-  input#ChannelSizeRadio-2:checked ~ div#middle > main > section.group > section.channel {
+  input#ChannelSizeRadio-2:checked ~ div#content > div#middle > main > section.group > section.channel {
     flex-basis: 25rem;
   }
 
-  input#ChannelSizeRadio-2:checked ~ div#middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
+  input#ChannelSizeRadio-2:checked ~ div#content > div#middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
     flex-basis: 35rem;
   }
 
-  input#ChannelSizeRadio-3:checked ~ div#middle > main > section.group > section.channel {
+  input#ChannelSizeRadio-3:checked ~ div#content > div#middle > main > section.group > section.channel {
     flex-basis: 35rem;
   }
 
-  input#ChannelSizeRadio-3:checked ~ div#middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
+  input#ChannelSizeRadio-3:checked ~ div#content > div#middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
     flex-basis: 40rem;
   }
 
-  input#ChannelSizeRadio-4:checked ~ div#middle > main > section.group > section.channel {
+  input#ChannelSizeRadio-4:checked ~ div#content > div#middle > main > section.group > section.channel {
     flex-basis: 50rem;
   }
 
-  input#ChannelSizeRadio-4:checked ~ div#middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
+  input#ChannelSizeRadio-4:checked ~ div#content > div#middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
     flex-basis: 50rem;
   }
 
-  input#ChannelSizeRadio-5:checked ~ div#middle > main > section.group > section.channel {
+  input#ChannelSizeRadio-5:checked ~ div#content > div#middle > main > section.group > section.channel {
     flex-basis: 70rem;
   }
 
-  input#ChannelSizeRadio-5:checked ~ div#middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
+  input#ChannelSizeRadio-5:checked ~ div#content > div#middle > main > section.group > section.channel > div.channel_chrome > .channel_content {
     flex-basis: 70rem;
   }
 
@@ -738,7 +741,7 @@ input#ChannelSizeRadio-5:checked ~ footer > ol#channel_size_control > li#Channel
               <!-- Display the content section for a group when it's nav radio is checked. -->
               <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
               <xsl:call-template name="write_group_id" />
-              <xsl:text>:checked ~ div#middle > main > section#Group-</xsl:text>
+              <xsl:text>:checked ~ div#content > div#middle > main > section#Group-</xsl:text>
               <xsl:call-template name="write_group_id" />
               <xsl:text> {&#x0A;  display: flex;&#x0A;}&#x0A;</xsl:text>
 
@@ -747,21 +750,21 @@ input#ChannelSizeRadio-5:checked ~ footer > ol#channel_size_control > li#Channel
                 <!-- Maximize the channel section when it's maximize box is checked. -->
                 <xsl:text>&#x0A;input#ChannelMaximizeCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text>:checked ~ div#middle > main > section.group > section#Channel-</xsl:text>
+                <xsl:text>:checked ~ div#content > div#middle > main > section.group > section#Channel-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text> {&#x0A;  position: absolute;&#x0A;  width: 100%;&#x0A;  height: 100%;&#x0A;  top: 0;&#x0A;  left: 0;&#x0A;}&#x0A;</xsl:text>
+                <xsl:text> {&#x0A;  position: absolute;&#x0A;  width: 100%;&#x0A;  height: 100%;&#x0A;  top: 0;&#x0A;  left: 0;&#x0A;  overflow: scroll;&#x0A;}&#x0A;</xsl:text>
 
                 <!-- Don't display the channel close control when it's maximize box is checked. -->
                 <xsl:text>&#x0A;input#ChannelMaximizeCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text>:checked ~ div#middle > main > section.group > section#Channel-</xsl:text>
+                <xsl:text>:checked ~ div#content > div#middle > main > section.group > section#Channel-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text> > div.channel_chrome > header > div.channel_controls > label.channel_close {&#x0A;  display: none;&#x0A;}&#x0A;</xsl:text>
 
                 <!-- Don't display the channel when it's close box is checked. -->
                 <xsl:text>&#x0A;input#ChannelCloseCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text>:checked ~ div#middle > main > section.group > section#Channel-</xsl:text>
+                <xsl:text>:checked ~ div#content > div#middle > main > section.group > section#Channel-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text> {&#x0A;  display: none;&#x0A;}&#x0A;</xsl:text>
 
@@ -849,7 +852,7 @@ body {
   color: var(--www-eee-body-foreground);
 }
 
-body > header {
+div#content > header {
   background-color: var(--www-eee-raised-background);
   color: var(--www-eee-header-foreground);
   border-style: outset;
@@ -859,14 +862,14 @@ body > header {
   border-left: none;
 }
 
-body > header > div#portal_heading {
+div#portal_heading {
   background-color: var(--www-eee-portal-heading-background);
   color: var(--www-eee-portal-heading-foreground);
   border-style: inset;
   border-color: var(--www-eee-border-color);
 }
 
-body > div#middle > nav {
+div#middle > nav {
   background-color: var(--www-eee-raised-background);
   color: var(--www-eee-nav-inactive-foreground);
   border-style: outset;
@@ -874,7 +877,7 @@ body > div#middle > nav {
   border-left: none;
 }
 
-body > div#middle > nav > ol > li > label {
+div#middle > nav > ol > li > label {
   font-size: larger;
 }
 
@@ -900,7 +903,7 @@ div.channel_chrome {
   color: var(--www-eee-content-foreground);
 }
 
-body > footer {
+div#content > footer {
   background-color: var(--www-eee-raised-background);
   color: var(--www-eee-footer-foreground);
   border-style: outset;
@@ -910,7 +913,7 @@ body > footer {
   border-left: none;
 }
 
-body > footer > address {
+div#content > footer > address {
   font-style: normal;
 }
 
@@ -926,7 +929,7 @@ ol#channel_size_control > li > label > span {
                 <!-- Highlight the navigation tab for a group when it's nav radio is checked. -->
                 <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
                 <xsl:call-template name="write_group_id" />
-                <xsl:text>:checked ~ div#middle > nav > ol > li#GroupNavItem-</xsl:text>
+                <xsl:text>:checked ~ div#content > div#middle > nav > ol > li#GroupNavItem-</xsl:text>
                 <xsl:call-template name="write_group_id" />
                 <xsl:text> {&#x0A;  background-color: var(--www-eee-body-background);&#x0A;  color: var(--www-eee-nav-active-foreground);&#x0A;  font-weight: bold;&#x0A;  border-style: inset;&#x0A;  border-color: var(--www-eee-border-color);&#x0A;  border-right: none;&#x0A;  margin-right: -0.19rem;&#x0A;}&#x0A;</xsl:text>
 
@@ -947,7 +950,7 @@ ol#channel_size_control > li > label > span {
                 <xsl:for-each select="body/outline">
                   <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
                   <xsl:call-template name="write_group_id" />
-                  <xsl:text>:checked ~ div#middle > nav > ol > li#GroupNavItem-</xsl:text>
+                  <xsl:text>:checked ~ div#content > div#middle > nav > ol > li#GroupNavItem-</xsl:text>
                   <xsl:call-template name="write_group_id" />
                   <xsl:text> {&#x0A;</xsl:text>
                   <xsl:apply-templates select="document($www-eee-includes-document)//html:html/html:style[@id='custom_style_active_group']/node()" mode="identity" />
@@ -1012,7 +1015,7 @@ ol#channel_size_control > li > label > span {
               </xsl:attribute>
               <xsl:attribute name="id">
                 <xsl:text>ChannelCloseCheckbox-</xsl:text>
-                <xsl:call-template name="write_channel_id" />
+               <xsl:call-template name="write_channel_id" />
               </xsl:attribute>
             </xsl:element>
 
@@ -1022,240 +1025,22 @@ ol#channel_size_control > li > label > span {
 
         <xsl:call-template name="channel_size_input" />
 
-        <xsl:if test="head/title">
-          <xsl:element name="header">
-
-            <xsl:element name="div">
-              <xsl:attribute name="id">
-                <xsl:text>portal_heading</xsl:text>
-              </xsl:attribute>
-
-              <xsl:element name="a">
-                <xsl:attribute name="id">
-                  <xsl:text>favicon</xsl:text>
-                </xsl:attribute>
-                <xsl:if test="head/ownerId">
-                  <xsl:attribute name="href">
-                    <xsl:value-of select="head/ownerId" />
-                  </xsl:attribute>
-                  <xsl:attribute name="target">
-                    <xsl:text>_blank</xsl:text>
-                  </xsl:attribute>
-                </xsl:if>
-                <xsl:element name="img">
-                  <xsl:attribute name="src">
-                    <xsl:text>favicon.svg</xsl:text>
-                  </xsl:attribute>
-                  <xsl:if test="head/ownerName">
-                    <xsl:attribute name="alt">
-                      <xsl:value-of select="head/ownerName" />
-                    </xsl:attribute>
-                  </xsl:if>
-                </xsl:element>
-              </xsl:element>
-
-              <xsl:element name="h1">
-                <xsl:value-of select="head/title" />
-              </xsl:element>
-
-            </xsl:element><!-- div#portal_heading -->
-
-            <xsl:if test="$www-eee-includes-document">
-              <xsl:apply-templates select="document($www-eee-includes-document)//html:html/html:ol[@id='header_links']" mode="identity" />
-            </xsl:if>
-
-          </xsl:element><!-- header -->
-        </xsl:if>
-
         <xsl:element name="div">
           <xsl:attribute name="id">
-            <xsl:text>middle</xsl:text>
+            <xsl:text>content</xsl:text>
           </xsl:attribute>
 
-          <xsl:element name="nav">
-            <xsl:element name="ol">
-              <xsl:for-each select="body/outline">
-                <xsl:element name="li">
-                  <xsl:attribute name="id">
-                    <xsl:text>GroupNavItem-</xsl:text>
-                    <xsl:call-template name="write_group_id" />
-                  </xsl:attribute>
-                  <xsl:element name="label">
-                    <xsl:attribute name="for">
-                      <xsl:text>GroupNavRadio-</xsl:text>
-                      <xsl:call-template name="write_group_id" />
-                    </xsl:attribute>
-                    <xsl:choose>
-                      <xsl:when test="@title">
-                        <xsl:value-of select="@title" />
-                      </xsl:when>
-                      <xsl:otherwise>
-                        <xsl:value-of select="@text" />
-                      </xsl:otherwise>
-                    </xsl:choose>
-                  </xsl:element>
-                </xsl:element>
-              </xsl:for-each>
-            </xsl:element>
-          </xsl:element><!-- nav -->
+          <xsl:element name="header">
 
-          <xsl:element name="main">
-
-            <xsl:for-each select="body/outline">
-              <xsl:element name="section">
+            <xsl:if test="head/title">
+              <xsl:element name="div">
                 <xsl:attribute name="id">
-                  <xsl:text>Group-</xsl:text>
-                  <xsl:call-template name="write_group_id" />
-                </xsl:attribute>
-                <xsl:attribute name="class">
-                  <xsl:text>group</xsl:text>
+                  <xsl:text>portal_heading</xsl:text>
                 </xsl:attribute>
 
-                <xsl:element name="h2">
-                  <xsl:choose>
-                    <xsl:when test="@title">
-                      <xsl:value-of select="@title" />
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <xsl:value-of select="@text" />
-                    </xsl:otherwise>
-                  </xsl:choose>
-                </xsl:element>
-
-                <xsl:for-each select="outline">
-                  <xsl:element name="section">
-                    <xsl:attribute name="id">
-                      <xsl:text>Channel-</xsl:text>
-                      <xsl:call-template name="write_channel_id" />
-                    </xsl:attribute>
-                    <xsl:attribute name="class">
-                      <xsl:text>channel</xsl:text>
-                      <xsl:if test="@type">
-                        <xsl:text> channel_type_</xsl:text>
-                        <xsl:call-template name="encode_id">
-                          <xsl:with-param name="text" select="@type" />
-                        </xsl:call-template>
-                      </xsl:if>
-                    </xsl:attribute>
-
-                    <xsl:element name="div">
-                      <xsl:attribute name="class">
-                        <xsl:text>channel_chrome</xsl:text>
-                      </xsl:attribute>
-
-                      <xsl:element name="header">
-
-                        <xsl:element name="h3">
-                          <xsl:element name="a">
-                            <xsl:if test="($www-eee-channel-title-link-disable = 'false') and (@url or @htmlUrl)">
-                              <xsl:attribute name="href">
-                                <xsl:choose>
-                                  <xsl:when test="@url">
-                                    <xsl:value-of select="@url" />
-                                  </xsl:when>
-                                  <xsl:otherwise>
-                                    <xsl:value-of select="@htmlUrl" />
-                                  </xsl:otherwise>
-                                </xsl:choose>
-                              </xsl:attribute>
-                              <xsl:attribute name="target">
-                                <xsl:text>_blank</xsl:text>
-                              </xsl:attribute>
-                            </xsl:if>
-                            <xsl:choose>
-                              <xsl:when test="@title">
-                                <xsl:value-of select="@title" />
-                              </xsl:when>
-                              <xsl:otherwise>
-                                <xsl:value-of select="@text" />
-                              </xsl:otherwise>
-                            </xsl:choose>
-                          </xsl:element>
-                        </xsl:element>
-
-                        <xsl:element name="div">
-                          <xsl:attribute name="class">
-                            <xsl:text>channel_controls</xsl:text>
-                          </xsl:attribute>
-
-                          <xsl:element name="label">
-                            <xsl:attribute name="class">
-                              <xsl:text>channel_maximize</xsl:text>
-                            </xsl:attribute>
-                            <xsl:attribute name="for">
-                              <xsl:text>ChannelMaximizeCheckbox-</xsl:text>
-                              <xsl:call-template name="write_channel_id" />
-                            </xsl:attribute>
-                            <xsl:call-template name="maximize_icon" />
-                          </xsl:element>
-
-                          <xsl:element name="label">
-                            <xsl:attribute name="class">
-                              <xsl:text>channel_close</xsl:text>
-                            </xsl:attribute>
-                            <xsl:attribute name="for">
-                              <xsl:text>ChannelCloseCheckbox-</xsl:text>
-                              <xsl:call-template name="write_channel_id" />
-                            </xsl:attribute>
-                            <xsl:call-template name="close_icon" />
-                          </xsl:element>
-
-                        </xsl:element><!-- div.channel_controls -->
-
-                      </xsl:element><!-- header -->
-
-                      <xsl:element name="iframe">
-                        <xsl:if test="@url or @htmlUrl">
-                          <xsl:attribute name="class">
-                            <xsl:text>channel_content</xsl:text>
-                          </xsl:attribute>
-                          <xsl:attribute name="src">
-                            <xsl:choose>
-                              <xsl:when test="@url">
-                                <xsl:value-of select="@url" />
-                              </xsl:when>
-                              <xsl:otherwise>
-                                <xsl:value-of select="@htmlUrl" />
-                              </xsl:otherwise>
-                            </xsl:choose>
-                          </xsl:attribute>
-                          <xsl:attribute name="sandbox">
-                            <xsl:value-of select="$www-eee-channel-sandbox" />
-                          </xsl:attribute>
-                          <xsl:attribute name="title">
-                            <xsl:choose>
-                              <xsl:when test="@title">
-                                <xsl:value-of select="@title" />
-                              </xsl:when>
-                              <xsl:otherwise>
-                                <xsl:value-of select="@text" />
-                              </xsl:otherwise>
-                            </xsl:choose>
-                          </xsl:attribute>
-                        </xsl:if>
-                      </xsl:element><!-- iframe.channel_content -->
-
-                    </xsl:element><!-- div.channel_chrome -->
-
-                  </xsl:element><!-- section.channel -->
-                </xsl:for-each><!-- channel outline -->
-
-              </xsl:element><!-- section.group -->
-            </xsl:for-each><!-- group outline -->
-
-          </xsl:element><!-- main -->
-
-        </xsl:element><!-- div.main -->
-
-        <xsl:element name="footer">
-
-          <xsl:if test="head/ownerName or head/ownerEmail">
-            <xsl:element name="address">
-
-              <xsl:if test="head/ownerName">
                 <xsl:element name="a">
                   <xsl:attribute name="id">
-                    <xsl:text>owner_name</xsl:text>
+                    <xsl:text>favicon</xsl:text>
                   </xsl:attribute>
                   <xsl:if test="head/ownerId">
                     <xsl:attribute name="href">
@@ -1265,45 +1050,272 @@ ol#channel_size_control > li > label > span {
                       <xsl:text>_blank</xsl:text>
                     </xsl:attribute>
                   </xsl:if>
-                  <xsl:value-of select="head/ownerName" />
-                </xsl:element>
-              </xsl:if>
-
-              <xsl:if test="head/ownerEmail">
-                <xsl:if test="head/ownerName">
-                  <xsl:text> </xsl:text>
-                </xsl:if>
-                <xsl:element name="span">
-                  <xsl:attribute name="id">
-                    <xsl:text>owner_email</xsl:text>
-                  </xsl:attribute>
-                  <xsl:text>&lt;</xsl:text>
-                  <xsl:element name="a">
-                    <xsl:attribute name="href">
-                      <xsl:text>mailto:</xsl:text>
-                      <xsl:value-of select="head/ownerEmail" />
+                  <xsl:element name="img">
+                    <xsl:attribute name="src">
+                      <xsl:text>favicon.svg</xsl:text>
                     </xsl:attribute>
-                    <xsl:value-of select="head/ownerEmail" />
+                    <xsl:if test="head/ownerName">
+                      <xsl:attribute name="alt">
+                        <xsl:value-of select="head/ownerName" />
+                      </xsl:attribute>
+                    </xsl:if>
                   </xsl:element>
-                  <xsl:text>&gt;</xsl:text>
                 </xsl:element>
-              </xsl:if>
 
-            </xsl:element><!-- address -->
-          </xsl:if><!-- owner info -->
+                <xsl:element name="h1">
+                  <xsl:value-of select="head/title" />
+                </xsl:element>
 
-          <xsl:if test="$www-eee-includes-document">
-            <xsl:apply-templates select="document($www-eee-includes-document)//html:html/html:ol[@id='footer_links']" mode="identity" />
-          </xsl:if>
+              </xsl:element><!-- div#portal_heading -->
+            </xsl:if>
 
-          <xsl:element name="ol">
+            <xsl:if test="$www-eee-includes-document">
+              <xsl:apply-templates select="document($www-eee-includes-document)//html:html/html:ol[@id='header_links']" mode="identity" />
+            </xsl:if>
+
+          </xsl:element><!-- header -->
+
+          <xsl:element name="div">
             <xsl:attribute name="id">
-              <xsl:text>channel_size_control</xsl:text>
+              <xsl:text>middle</xsl:text>
             </xsl:attribute>
-            <xsl:call-template name="channel_size_label" />
-          </xsl:element>
 
-        </xsl:element><!-- footer -->
+            <xsl:element name="nav">
+              <xsl:element name="ol">
+                <xsl:for-each select="body/outline">
+                  <xsl:element name="li">
+                    <xsl:attribute name="id">
+                      <xsl:text>GroupNavItem-</xsl:text>
+                      <xsl:call-template name="write_group_id" />
+                    </xsl:attribute>
+                    <xsl:element name="label">
+                      <xsl:attribute name="for">
+                        <xsl:text>GroupNavRadio-</xsl:text>
+                        <xsl:call-template name="write_group_id" />
+                      </xsl:attribute>
+                      <xsl:choose>
+                        <xsl:when test="@title">
+                          <xsl:value-of select="@title" />
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select="@text" />
+                        </xsl:otherwise>
+                      </xsl:choose>
+                    </xsl:element>
+                  </xsl:element>
+                </xsl:for-each>
+              </xsl:element>
+            </xsl:element><!-- nav -->
+
+            <xsl:element name="main">
+
+              <xsl:for-each select="body/outline">
+                <xsl:element name="section">
+                  <xsl:attribute name="id">
+                    <xsl:text>Group-</xsl:text>
+                    <xsl:call-template name="write_group_id" />
+                  </xsl:attribute>
+                  <xsl:attribute name="class">
+                    <xsl:text>group</xsl:text>
+                  </xsl:attribute>
+
+                  <xsl:element name="h2">
+                    <xsl:choose>
+                      <xsl:when test="@title">
+                        <xsl:value-of select="@title" />
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="@text" />
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:element>
+
+                  <xsl:for-each select="outline">
+
+                    <xsl:element name="section">
+                      <xsl:attribute name="id">
+                        <xsl:text>Channel-</xsl:text>
+                        <xsl:call-template name="write_channel_id" />
+                      </xsl:attribute>
+                      <xsl:attribute name="class">
+                        <xsl:text>channel</xsl:text>
+                        <xsl:if test="@type">
+                          <xsl:text> channel_type_</xsl:text>
+                          <xsl:call-template name="encode_id">
+                            <xsl:with-param name="text" select="@type" />
+                          </xsl:call-template>
+                        </xsl:if>
+                      </xsl:attribute>
+
+                      <xsl:element name="div">
+                        <xsl:attribute name="class">
+                          <xsl:text>channel_chrome</xsl:text>
+                        </xsl:attribute>
+
+                        <xsl:element name="header">
+
+                          <xsl:element name="h3">
+                            <xsl:element name="a">
+                              <xsl:if test="($www-eee-channel-title-link-disable = 'false') and (@url or @htmlUrl)">
+                                <xsl:attribute name="href">
+                                  <xsl:choose>
+                                    <xsl:when test="@url">
+                                      <xsl:value-of select="@url" />
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                      <xsl:value-of select="@htmlUrl" />
+                                    </xsl:otherwise>
+                                  </xsl:choose>
+                                </xsl:attribute>
+                                <xsl:attribute name="target">
+                                  <xsl:text>_blank</xsl:text>
+                                </xsl:attribute>
+                              </xsl:if>
+                              <xsl:choose>
+                                <xsl:when test="@title">
+                                  <xsl:value-of select="@title" />
+                                </xsl:when>
+                                <xsl:otherwise>
+                                  <xsl:value-of select="@text" />
+                                </xsl:otherwise>
+                              </xsl:choose>
+                            </xsl:element>
+                          </xsl:element>
+
+                          <xsl:element name="div">
+                            <xsl:attribute name="class">
+                              <xsl:text>channel_controls</xsl:text>
+                            </xsl:attribute>
+
+                            <xsl:element name="label">
+                              <xsl:attribute name="class">
+                                <xsl:text>channel_maximize</xsl:text>
+                              </xsl:attribute>
+                              <xsl:attribute name="for">
+                                <xsl:text>ChannelMaximizeCheckbox-</xsl:text>
+                                <xsl:call-template name="write_channel_id" />
+                              </xsl:attribute>
+                              <xsl:call-template name="maximize_icon" />
+                            </xsl:element>
+
+                            <xsl:element name="label">
+                              <xsl:attribute name="class">
+                                <xsl:text>channel_close</xsl:text>
+                              </xsl:attribute>
+                              <xsl:attribute name="for">
+                                <xsl:text>ChannelCloseCheckbox-</xsl:text>
+                                <xsl:call-template name="write_channel_id" />
+                              </xsl:attribute>
+                              <xsl:call-template name="close_icon" />
+                            </xsl:element>
+
+                          </xsl:element><!-- div.channel_controls -->
+
+                        </xsl:element><!-- header -->
+
+                        <xsl:element name="iframe">
+                          <xsl:if test="@url or @htmlUrl">
+                            <xsl:attribute name="class">
+                              <xsl:text>channel_content</xsl:text>
+                            </xsl:attribute>
+                            <xsl:attribute name="src">
+                              <xsl:choose>
+                                <xsl:when test="@url">
+                                  <xsl:value-of select="@url" />
+                                </xsl:when>
+                                <xsl:otherwise>
+                                  <xsl:value-of select="@htmlUrl" />
+                                </xsl:otherwise>
+                              </xsl:choose>
+                            </xsl:attribute>
+                            <xsl:attribute name="sandbox">
+                              <xsl:value-of select="$www-eee-channel-sandbox" />
+                            </xsl:attribute>
+                            <xsl:attribute name="title">
+                              <xsl:choose>
+                                <xsl:when test="@title">
+                                  <xsl:value-of select="@title" />
+                                </xsl:when>
+                                <xsl:otherwise>
+                                  <xsl:value-of select="@text" />
+                                </xsl:otherwise>
+                              </xsl:choose>
+                            </xsl:attribute>
+                          </xsl:if>
+                        </xsl:element><!-- iframe.channel_content -->
+
+                      </xsl:element><!-- div.channel_chrome -->
+
+                    </xsl:element><!-- section.channel -->
+
+                  </xsl:for-each><!-- channel outline -->
+
+                </xsl:element><!-- section.group -->
+              </xsl:for-each><!-- group outline -->
+
+            </xsl:element><!-- main -->
+
+          </xsl:element><!-- div#main -->
+
+          <xsl:element name="footer">
+
+            <xsl:if test="head/ownerName or head/ownerEmail">
+              <xsl:element name="address">
+
+                <xsl:if test="head/ownerName">
+                  <xsl:element name="a">
+                    <xsl:attribute name="id">
+                      <xsl:text>owner_name</xsl:text>
+                    </xsl:attribute>
+                    <xsl:if test="head/ownerId">
+                      <xsl:attribute name="href">
+                        <xsl:value-of select="head/ownerId" />
+                      </xsl:attribute>
+                      <xsl:attribute name="target">
+                        <xsl:text>_blank</xsl:text>
+                      </xsl:attribute>
+                    </xsl:if>
+                    <xsl:value-of select="head/ownerName" />
+                  </xsl:element>
+                </xsl:if>
+
+                <xsl:if test="head/ownerEmail">
+                  <xsl:if test="head/ownerName">
+                    <xsl:text> </xsl:text>
+                  </xsl:if>
+                  <xsl:element name="span">
+                    <xsl:attribute name="id">
+                      <xsl:text>owner_email</xsl:text>
+                    </xsl:attribute>
+                    <xsl:text>&lt;</xsl:text>
+                    <xsl:element name="a">
+                      <xsl:attribute name="href">
+                        <xsl:text>mailto:</xsl:text>
+                        <xsl:value-of select="head/ownerEmail" />
+                      </xsl:attribute>
+                      <xsl:value-of select="head/ownerEmail" />
+                    </xsl:element>
+                    <xsl:text>&gt;</xsl:text>
+                  </xsl:element>
+                </xsl:if>
+
+              </xsl:element><!-- address -->
+            </xsl:if><!-- owner info -->
+
+            <xsl:if test="$www-eee-includes-document">
+              <xsl:apply-templates select="document($www-eee-includes-document)//html:html/html:ol[@id='footer_links']" mode="identity" />
+            </xsl:if>
+
+            <xsl:element name="ol">
+              <xsl:attribute name="id">
+                <xsl:text>channel_size_control</xsl:text>
+              </xsl:attribute>
+              <xsl:call-template name="channel_size_label" />
+            </xsl:element>
+
+          </xsl:element><!-- footer -->
+
+        </xsl:element><!-- div#content -->
 
       </xsl:element><!-- body -->
 
