@@ -113,10 +113,10 @@
   </xsl:template>
 
   <xsl:template name="maximize_icon">
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-1 -1 13 13" preserveAspectRatio="xMidYMid">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 11 11" preserveAspectRatio="xMidYMid">
 
       <xsl:element name="title">
-        <xsl:text>&#x2922;</xsl:text>
+        <xsl:text>&#x2922;</xsl:text><!-- 'NORTH EAST AND SOUTH WEST ARROW' -->
       </xsl:element>
 
       <xsl:element name="g">
@@ -124,27 +124,9 @@
           <xsl:text>channel_control_icon maximize_icon</xsl:text>
         </xsl:attribute>
 
-        <xsl:element name="polyline">
-          <xsl:attribute name="class">
-            <xsl:text>maximize_icon_minimized_box</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="points">
-            <xsl:text>3,5 0,5 0,11, 6,11 6,8</xsl:text>
-          </xsl:attribute>
-        </xsl:element>
-
-        <xsl:element name="polyline">
-          <xsl:attribute name="class">
-            <xsl:text>maximize_icon_maximized_box</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="points">
-            <xsl:text>3,6 3,0 11,0 11,8 5,8</xsl:text>
-          </xsl:attribute>
-        </xsl:element>
-
         <xsl:element name="line">
           <xsl:attribute name="class">
-            <xsl:text>maximize_icon_top_arrow_body</xsl:text>
+            <xsl:text>maximize_icon_arrow_body</xsl:text>
           </xsl:attribute>
           <xsl:attribute name="x1">
             <xsl:text>9</xsl:text>
@@ -184,34 +166,16 @@
   </xsl:template><!-- maximize_icon -->
 
   <xsl:template name="close_icon">
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-1 -1 13 13" preserveAspectRatio="xMidYMid">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 11 11" preserveAspectRatio="xMidYMid">
 
       <xsl:element name="title">
-        <xsl:text>&#x274E;</xsl:text>
+        <xsl:text>&#x274C;</xsl:text><!-- 'CROSS MARK' -->
       </xsl:element>
 
       <xsl:element name="g">
         <xsl:attribute name="class">
           <xsl:text>channel_control_icon close_icon</xsl:text>
         </xsl:attribute>
-
-        <xsl:element name="rect">
-          <xsl:attribute name="class">
-            <xsl:text>close_icon_box</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="x">
-            <xsl:text>0</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="y">
-            <xsl:text>0</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="width">
-            <xsl:text>11</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="height">
-            <xsl:text>11</xsl:text>
-          </xsl:attribute>
-        </xsl:element>
 
         <xsl:element name="line">
           <xsl:attribute name="class">
@@ -559,14 +523,16 @@ div.channel_controls {
   align-items: center;
 }
 
-label.channel_maximize, label.channel_close {
+div.channel_controls > * {
   flex-grow: 1;
-  display: block;
+  display: grid;
   margin: 0;
   margin-right: 0.5rem;
   margin-left: 0.5rem;
-  width: 2rem;
-  height: 2rem;
+  border-style: solid;
+  border-color: black;
+  width: 1.7rem;
+  height: 1.7rem;
   padding: 0;
   cursor: pointer;
 }
@@ -931,6 +897,10 @@ div.channel_chrome {
 
 .channel_control_icon {
   stroke: var(--www-eee-channel-control);
+}
+
+div.channel_controls > * {
+  border-color: var(--www-eee-channel-control);
 }
 
 .channel_content {
