@@ -1005,7 +1005,14 @@ ol#channel_size_control > li > label > span {
 
               <xsl:for-each select="body/outline">
 
-                <!-- Highlight the navigation tab for a group when it's nav radio is checked. -->
+                <!-- Display a focus border around the navigation tab for a group when it's nav state input is focused. -->
+                <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
+                <xsl:call-template name="write_group_id" />
+                <xsl:text>:focus ~ div#content > div#middle > nav > ol > li#GroupNavItem-</xsl:text>
+                <xsl:call-template name="write_group_id" />
+                <xsl:text> > label {&#x0A;  border-color: var(--www-eee-nav-active-foreground);&#x0A;}&#x0A;</xsl:text>
+
+                <!-- Highlight the navigation tab for a group when it's nav state input is checked. -->
                 <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
                 <xsl:call-template name="write_group_id" />
                 <xsl:text>:checked ~ div#content > div#middle > nav > ol > li#GroupNavItem-</xsl:text>
@@ -1094,7 +1101,7 @@ ol#channel_size_control > li > label > span {
                 <xsl:call-template name="write_channel_id" />
               </xsl:attribute>
               <xsl:attribute name="tabindex">
-                <xsl:value-of select="position() + 40000" />
+                <xsl:value-of select="(position() * 10) + 40001" />
               </xsl:attribute>
             </xsl:element>
 
@@ -1113,7 +1120,7 @@ ol#channel_size_control > li > label > span {
                <xsl:call-template name="write_channel_id" />
               </xsl:attribute>
               <xsl:attribute name="tabindex">
-                <xsl:value-of select="position() + 40000" />
+                <xsl:value-of select="(position() * 10) + 40001" />
               </xsl:attribute>
             </xsl:element>
 
@@ -1271,6 +1278,9 @@ ol#channel_size_control > li > label > span {
                                 <xsl:attribute name="target">
                                   <xsl:text>_blank</xsl:text>
                                 </xsl:attribute>
+                                <xsl:attribute name="tabindex">
+                                  <xsl:value-of select="(position() * 10) + 40000" />
+                                </xsl:attribute>
                               </xsl:if>
                               <xsl:choose>
                                 <xsl:when test="@title">
@@ -1365,7 +1375,7 @@ ol#channel_size_control > li > label > span {
                               </xsl:choose>
                             </xsl:attribute>
                             <xsl:attribute name="tabindex">
-                              <xsl:value-of select="position() + 40000" />
+                              <xsl:value-of select="(position() * 10) + 40002" />
                             </xsl:attribute>
                           </xsl:if>
                         </xsl:element><!-- iframe.channel_content -->
