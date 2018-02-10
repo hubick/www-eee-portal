@@ -112,103 +112,52 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template name="maximize_icon">
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 11 11" preserveAspectRatio="xMidYMid">
+  <xsl:template name="maximize_control">
+    <xsl:param name="title" />
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-1 -1 13 13" preserveAspectRatio="xMidYMid">
 
       <xsl:element name="title">
-        <xsl:text>&#x2922;</xsl:text><!-- 'NORTH EAST AND SOUTH WEST ARROW' -->
+        <xsl:text>&#x1F5D6; </xsl:text><!-- 'MAXIMIZE' -->
+        <xsl:value-of select="$title" />
       </xsl:element>
 
       <xsl:element name="g">
         <xsl:attribute name="class">
-          <xsl:text>channel_control_icon maximize_icon</xsl:text>
+          <xsl:text>channel_control_icon maximize_control</xsl:text>
         </xsl:attribute>
 
-        <xsl:element name="line">
+        <xsl:element name="rect">
           <xsl:attribute name="class">
-            <xsl:text>maximize_icon_arrow_body</xsl:text>
+            <xsl:text>maximize_control_window_border</xsl:text>
           </xsl:attribute>
-          <xsl:attribute name="x1">
-            <xsl:text>9</xsl:text>
+          <xsl:attribute name="x">
+            <xsl:text>0</xsl:text>
           </xsl:attribute>
-          <xsl:attribute name="y1">
-            <xsl:text>2</xsl:text>
+          <xsl:attribute name="y">
+            <xsl:text>0</xsl:text>
           </xsl:attribute>
-          <xsl:attribute name="x2">
-            <xsl:text>2</xsl:text>
+          <xsl:attribute name="width">
+            <xsl:text>11</xsl:text>
           </xsl:attribute>
-          <xsl:attribute name="y2">
-            <xsl:text>9</xsl:text>
+          <xsl:attribute name="height">
+            <xsl:text>11</xsl:text>
           </xsl:attribute>
         </xsl:element>
 
-        <xsl:element name="polyline">
+        <xsl:element name="rect">
           <xsl:attribute name="class">
-            <xsl:text>maximize_icon_top_arrow_head</xsl:text>
+            <xsl:text>maximize_control_window_title</xsl:text>
           </xsl:attribute>
-          <xsl:attribute name="points">
-            <xsl:text>6,2 9,2 9,5</xsl:text>
+          <xsl:attribute name="x">
+            <xsl:text>0</xsl:text>
           </xsl:attribute>
-        </xsl:element>
-
-        <xsl:element name="polyline">
-          <xsl:attribute name="class">
-            <xsl:text>maximize_icon_bottom_arrow_head</xsl:text>
+          <xsl:attribute name="y">
+            <xsl:text>0</xsl:text>
           </xsl:attribute>
-          <xsl:attribute name="points">
-            <xsl:text>2,6 2,9 5,9</xsl:text>
+          <xsl:attribute name="width">
+            <xsl:text>11</xsl:text>
           </xsl:attribute>
-        </xsl:element>
-
-      </xsl:element><!-- g -->
-
-    </svg>
-  </xsl:template><!-- maximize_icon -->
-
-  <xsl:template name="close_icon">
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 11 11" preserveAspectRatio="xMidYMid">
-
-      <xsl:element name="title">
-        <xsl:text>&#x274C;</xsl:text><!-- 'CROSS MARK' -->
-      </xsl:element>
-
-      <xsl:element name="g">
-        <xsl:attribute name="class">
-          <xsl:text>channel_control_icon close_icon</xsl:text>
-        </xsl:attribute>
-
-        <xsl:element name="line">
-          <xsl:attribute name="class">
-            <xsl:text>close_icon_back_slash</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="x1">
-            <xsl:text>2</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="y1">
-            <xsl:text>2</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="x2">
-            <xsl:text>9</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="y2">
-            <xsl:text>9</xsl:text>
-          </xsl:attribute>
-        </xsl:element>
-
-        <xsl:element name="line">
-          <xsl:attribute name="class">
-            <xsl:text>close_icon_forward_slash</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="x1">
-            <xsl:text>2</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="y1">
-            <xsl:text>9</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="x2">
-            <xsl:text>9</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="y2">
+          <xsl:attribute name="height">
             <xsl:text>2</xsl:text>
           </xsl:attribute>
         </xsl:element>
@@ -216,7 +165,62 @@
       </xsl:element><!-- g -->
 
     </svg>
-  </xsl:template><!-- close_icon -->
+  </xsl:template><!-- maximize_control -->
+
+  <xsl:template name="close_control">
+    <xsl:param name="title" />
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-1 -1 13 13" preserveAspectRatio="xMidYMid">
+
+      <xsl:element name="title">
+        <xsl:text>&#x274C; </xsl:text><!-- 'CROSS MARK' -->
+        <xsl:value-of select="$title" />
+      </xsl:element>
+
+      <xsl:element name="g">
+        <xsl:attribute name="class">
+          <xsl:text>channel_control_icon close_control</xsl:text>
+        </xsl:attribute>
+
+        <xsl:element name="line">
+          <xsl:attribute name="class">
+            <xsl:text>close_control_back_slash</xsl:text>
+          </xsl:attribute>
+          <xsl:attribute name="x1">
+            <xsl:text>0</xsl:text>
+          </xsl:attribute>
+          <xsl:attribute name="y1">
+            <xsl:text>0</xsl:text>
+          </xsl:attribute>
+          <xsl:attribute name="x2">
+            <xsl:text>11</xsl:text>
+          </xsl:attribute>
+          <xsl:attribute name="y2">
+            <xsl:text>11</xsl:text>
+          </xsl:attribute>
+        </xsl:element>
+
+        <xsl:element name="line">
+          <xsl:attribute name="class">
+            <xsl:text>close_control_forward_slash</xsl:text>
+          </xsl:attribute>
+          <xsl:attribute name="x1">
+            <xsl:text>0</xsl:text>
+          </xsl:attribute>
+          <xsl:attribute name="y1">
+            <xsl:text>11</xsl:text>
+          </xsl:attribute>
+          <xsl:attribute name="x2">
+            <xsl:text>11</xsl:text>
+          </xsl:attribute>
+          <xsl:attribute name="y2">
+            <xsl:text>0</xsl:text>
+          </xsl:attribute>
+        </xsl:element>
+
+      </xsl:element><!-- g -->
+
+    </svg>
+  </xsl:template><!-- close_control -->
 
   <xsl:template name="channel_size_input">
     <xsl:param name="i" select="1" />
@@ -235,6 +239,9 @@
       <xsl:attribute name="id">
         <xsl:text>ChannelSizeRadio-</xsl:text>
         <xsl:value-of select="$i" />
+      </xsl:attribute>
+      <xsl:attribute name="tabindex">
+        <xsl:text>70000</xsl:text>
       </xsl:attribute>
       <xsl:if test="$i = $www-eee-channel-size-default">
         <xsl:attribute name="checked">
@@ -362,7 +369,16 @@ div#content {
   flex-direction: column;
 }
 
-input.state {
+input.group_nav_state, input.channel_size_state {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+input.channel_maximize_state, input.channel_close_state {
   display: none;
 }
 
@@ -393,6 +409,8 @@ div#portal_heading {
 a#favicon {
   display: grid;
   margin: 0;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
   padding: 0;
   border-style: none;
   border-width: 0;
@@ -402,8 +420,6 @@ a#favicon {
 a#favicon img {
   width: 2rem;
   height: 2rem;
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
 }
 
 div#portal_heading > h1 {
@@ -464,6 +480,9 @@ div#middle > nav > ol > li {
 
 div#middle > nav > ol > li > label {
   display: block;
+  border-style: solid;
+  border-width: thin;
+  border-color: transparent;
   padding: 0.25rem;
   padding-left: 0.5rem;
   cursor: pointer;
@@ -530,6 +549,7 @@ div.channel_controls > * {
   margin-right: 0.5rem;
   margin-left: 0.5rem;
   border-style: solid;
+  border-width: medium;
   border-color: black;
   width: 1.7rem;
   height: 1.7rem;
@@ -540,6 +560,10 @@ div.channel_controls > * {
 .channel_control_icon {
   fill: none;
   stroke: black;
+}
+
+.maximize_control_window_title {
+  fill: black;
 }
 
 .channel_content {
@@ -624,6 +648,7 @@ ol#channel_size_control > li > label {
   justify-content: center;
   cursor: pointer;
   border-style: solid;
+  border-width: medium;
   border-color: transparent;
 }
 
@@ -656,6 +681,15 @@ li#ChannelSizeItem_4 > label > span {
 li#ChannelSizeItem_5 > label > span {
   width: 1.5em;
   height: 1.5em;
+}
+
+input#ChannelSizeRadio-1:focus ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_1 > label,
+input#ChannelSizeRadio-2:focus ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_2 > label,
+input#ChannelSizeRadio-3:focus ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_3 > label,
+input#ChannelSizeRadio-4:focus ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_4 > label,
+input#ChannelSizeRadio-5:focus ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_5 > label {
+  border-style: dotted;
+  border-color: red;
 }
 
 input#ChannelSizeRadio-1:checked ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_1 > label,
@@ -734,16 +768,37 @@ input#ChannelSizeRadio-5:checked ~ div#content > footer > ol#channel_size_contro
 
             <xsl:for-each select="body/outline">
 
-              <!-- Display the content section for a group when it's nav radio is checked. -->
+              <!-- Display a focus border around the navigation tab for a group when it's nav state input is focused. -->
+              <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
+              <xsl:call-template name="write_group_id" />
+              <xsl:text>:focus ~ div#content > div#middle > nav > ol > li#GroupNavItem-</xsl:text>
+              <xsl:call-template name="write_group_id" />
+              <xsl:text> > label {&#x0A;  border-style: dotted;&#x0A;  border-color: white;&#x0A;}&#x0A;</xsl:text>
+
+              <!-- Display the content section for a group when it's nav state input is checked. -->
               <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
               <xsl:call-template name="write_group_id" />
               <xsl:text>:checked ~ div#content > div#middle > main > section#Group-</xsl:text>
               <xsl:call-template name="write_group_id" />
               <xsl:text> {&#x0A;  display: flex;&#x0A;}&#x0A;</xsl:text>
 
+              <!-- Display the channel state inputs for a group when it's nav state input is checked. -->
+              <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
+              <xsl:call-template name="write_group_id" />
+              <xsl:text>:checked ~ input.channel_group_state_</xsl:text>
+              <xsl:call-template name="write_group_id" />
+              <xsl:text> {&#x0A;  display: inline-block;&#x0A;  position: absolute;&#x0A;  left: -10000px;&#x0A;  top: auto;&#x0A;  width: 1px;&#x0A;  height: 1px;&#x0A;  overflow: hidden;&#x0A;}&#x0A;</xsl:text>
+
               <xsl:for-each select="outline">
 
-                <!-- Maximize the channel section when it's maximize box is checked. -->
+                <!-- Display a focus border around the channel maximize control when it's maximize state input is focused. -->
+                <xsl:text>&#x0A;input#ChannelMaximizeCheckbox-</xsl:text>
+                <xsl:call-template name="write_channel_id" />
+                <xsl:text>:focus ~ div#content > div#middle > main > section.group > section#Channel-</xsl:text>
+                <xsl:call-template name="write_channel_id" />
+                <xsl:text> > div.channel_chrome > header > div.channel_controls > label.channel_maximize {&#x0A;  border-style: dotted;&#x0A;}&#x0A;</xsl:text>
+
+                <!-- Maximize the channel section when it's maximize state input is checked. -->
                 <xsl:text>&#x0A;input#ChannelMaximizeCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text>:checked ~ div#content > div#middle > main > section.group > section#Channel-</xsl:text>
@@ -757,14 +812,21 @@ input#ChannelSizeRadio-5:checked ~ div#content > footer > ol#channel_size_contro
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text> > div.channel_chrome > .channel_content {&#x0A;  flex-basis: auto;&#x0A;}&#x0A;</xsl:text>
 
-                <!-- Don't display the channel close control when it's maximize box is checked. -->
+                <!-- Don't display the channel close control when it's maximize state input is checked. -->
                 <xsl:text>&#x0A;input#ChannelMaximizeCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text>:checked ~ div#content > div#middle > main > section.group > section#Channel-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text> > div.channel_chrome > header > div.channel_controls > label.channel_close {&#x0A;  display: none;&#x0A;}&#x0A;</xsl:text>
 
-                <!-- Don't display the channel when it's close box is checked. -->
+                <!-- Display a focus border around the channel close control when it's close state input is focused. -->
+                <xsl:text>&#x0A;input#ChannelCloseCheckbox-</xsl:text>
+                <xsl:call-template name="write_channel_id" />
+                <xsl:text>:focus ~ div#content > div#middle > main > section.group > section#Channel-</xsl:text>
+                <xsl:call-template name="write_channel_id" />
+                <xsl:text> > div.channel_chrome > header > div.channel_controls > label.channel_close {&#x0A;  border-style: dotted;&#x0A;}&#x0A;</xsl:text>
+
+                <!-- Don't display the channel when it's close state input is checked. -->
                 <xsl:text>&#x0A;input#ChannelCloseCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text>:checked ~ div#content > div#middle > main > section.group > section#Channel-</xsl:text>
@@ -859,6 +921,7 @@ div#content > header {
   background-color: var(--www-eee-raised-background);
   color: var(--www-eee-header-foreground);
   border-style: outset;
+  border-width: medium;
   border-color: var(--www-eee-border-color);
   border-top: none;
   border-right: none;
@@ -869,6 +932,7 @@ div#portal_heading {
   background-color: var(--www-eee-portal-heading-background);
   color: var(--www-eee-portal-heading-foreground);
   border-style: inset;
+  border-width: medium;
   border-color: var(--www-eee-border-color);
 }
 
@@ -876,6 +940,7 @@ div#middle > nav {
   background-color: var(--www-eee-raised-background);
   color: var(--www-eee-nav-inactive-foreground);
   border-style: outset;
+  border-width: medium;
   border-color: var(--www-eee-border-color);
   border-left: none;
 }
@@ -892,11 +957,16 @@ div.channel_chrome {
   background-color: var(--www-eee-raised-background);
   color: var(--www-eee-channel-title-foreground);
   border-style: outset;
+  border-width: medium;
   border-color: var(--www-eee-border-color);
 }
 
 .channel_control_icon {
   stroke: var(--www-eee-channel-control);
+}
+
+.maximize_control_window_title {
+  fill: var(--www-eee-channel-control);
 }
 
 div.channel_controls > * {
@@ -905,6 +975,7 @@ div.channel_controls > * {
 
 .channel_content {
   border-style: inset;
+  border-width: medium;
   border-color: var(--www-eee-border-color);
   background-color: var(--www-eee-content-background);
   color: var(--www-eee-content-foreground);
@@ -914,6 +985,7 @@ div#content > footer {
   background-color: var(--www-eee-raised-background);
   color: var(--www-eee-footer-foreground);
   border-style: outset;
+  border-width: medium;
   border-color: var(--www-eee-border-color);
   border-right: none;
   border-bottom: none;
@@ -938,7 +1010,7 @@ ol#channel_size_control > li > label > span {
                 <xsl:call-template name="write_group_id" />
                 <xsl:text>:checked ~ div#content > div#middle > nav > ol > li#GroupNavItem-</xsl:text>
                 <xsl:call-template name="write_group_id" />
-                <xsl:text> {&#x0A;  background-color: var(--www-eee-body-background);&#x0A;  color: var(--www-eee-nav-active-foreground);&#x0A;  font-weight: bold;&#x0A;  border-style: inset;&#x0A;  border-color: var(--www-eee-border-color);&#x0A;  border-right: none;&#x0A;  margin-right: -0.19rem;&#x0A;}&#x0A;</xsl:text>
+                <xsl:text> {&#x0A;  background-color: var(--www-eee-body-background);&#x0A;  color: var(--www-eee-nav-active-foreground);&#x0A;  font-weight: bold;&#x0A;  border-style: inset;&#x0A;  border-width: medium;&#x0A;  border-color: var(--www-eee-border-color);&#x0A;  border-right: none;&#x0A;  margin-right: -0.19rem;&#x0A;}&#x0A;</xsl:text>
 
               </xsl:for-each>
 
@@ -973,9 +1045,9 @@ ol#channel_size_control > li > label > span {
 
       <xsl:element name="body">
 
-        <xsl:for-each select="body/outline">
+        <!-- Thanks to Art Lawry and Chris Coyier for pioneering this style of "Radio-Controlled Web Design". -->
 
-          <!-- Thanks to Art Lawry and Chris Coyier for pioneering this style of "Radio-Controlled Web Design". -->
+        <xsl:for-each select="body/outline">
 
           <xsl:element name="input">
             <xsl:attribute name="type">
@@ -991,12 +1063,19 @@ ol#channel_size_control > li > label > span {
               <xsl:text>GroupNavRadio-</xsl:text>
               <xsl:call-template name="write_group_id" />
             </xsl:attribute>
+            <xsl:attribute name="tabindex">
+              <xsl:text>30000</xsl:text>
+            </xsl:attribute>
             <xsl:if test="position() = 1"><!-- Open the first group page by default. -->
               <xsl:attribute name="checked">
                 <xsl:text>checked</xsl:text>
               </xsl:attribute>
             </xsl:if>
           </xsl:element>
+
+        </xsl:for-each><!-- group outline -->
+
+        <xsl:for-each select="body/outline">
 
           <xsl:for-each select="outline">
 
@@ -1005,11 +1084,17 @@ ol#channel_size_control > li > label > span {
                 <xsl:text>checkbox</xsl:text>
               </xsl:attribute>
               <xsl:attribute name="class">
-                <xsl:text>state channel_maximize_state</xsl:text>
+                <xsl:text>state channel_maximize_state channel_group_state_</xsl:text>
+                <xsl:for-each select="..">
+                  <xsl:call-template name="write_group_id" />
+                </xsl:for-each>
               </xsl:attribute>
               <xsl:attribute name="id">
                 <xsl:text>ChannelMaximizeCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
+              </xsl:attribute>
+              <xsl:attribute name="tabindex">
+                <xsl:value-of select="position() + 40000" />
               </xsl:attribute>
             </xsl:element>
 
@@ -1018,11 +1103,17 @@ ol#channel_size_control > li > label > span {
                 <xsl:text>checkbox</xsl:text>
               </xsl:attribute>
               <xsl:attribute name="class">
-                <xsl:text>state channel_close_state</xsl:text>
+                <xsl:text>state channel_close_state channel_group_state_</xsl:text>
+                <xsl:for-each select="..">
+                  <xsl:call-template name="write_group_id" />
+                </xsl:for-each>
               </xsl:attribute>
               <xsl:attribute name="id">
                 <xsl:text>ChannelCloseCheckbox-</xsl:text>
                <xsl:call-template name="write_channel_id" />
+              </xsl:attribute>
+              <xsl:attribute name="tabindex">
+                <xsl:value-of select="position() + 40000" />
               </xsl:attribute>
             </xsl:element>
 
@@ -1055,6 +1146,9 @@ ol#channel_size_control > li > label > span {
                     </xsl:attribute>
                     <xsl:attribute name="target">
                       <xsl:text>_blank</xsl:text>
+                    </xsl:attribute>
+                    <xsl:attribute name="tabindex">
+                      <xsl:text>10000</xsl:text>
                     </xsl:attribute>
                   </xsl:if>
                   <xsl:element name="img">
@@ -1202,7 +1296,18 @@ ol#channel_size_control > li > label > span {
                                 <xsl:text>ChannelMaximizeCheckbox-</xsl:text>
                                 <xsl:call-template name="write_channel_id" />
                               </xsl:attribute>
-                              <xsl:call-template name="maximize_icon" />
+                              <xsl:call-template name="maximize_control">
+                                <xsl:with-param name="title">
+                                  <xsl:choose>
+                                    <xsl:when test="@title">
+                                      <xsl:value-of select="@title" />
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                      <xsl:value-of select="@text" />
+                                    </xsl:otherwise>
+                                  </xsl:choose>
+                                </xsl:with-param>
+                              </xsl:call-template>
                             </xsl:element>
 
                             <xsl:element name="label">
@@ -1213,7 +1318,18 @@ ol#channel_size_control > li > label > span {
                                 <xsl:text>ChannelCloseCheckbox-</xsl:text>
                                 <xsl:call-template name="write_channel_id" />
                               </xsl:attribute>
-                              <xsl:call-template name="close_icon" />
+                              <xsl:call-template name="close_control">
+                                <xsl:with-param name="title">
+                                  <xsl:choose>
+                                    <xsl:when test="@title">
+                                      <xsl:value-of select="@title" />
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                      <xsl:value-of select="@text" />
+                                    </xsl:otherwise>
+                                  </xsl:choose>
+                                </xsl:with-param>
+                              </xsl:call-template>
                             </xsl:element>
 
                           </xsl:element><!-- div.channel_controls -->
@@ -1248,6 +1364,9 @@ ol#channel_size_control > li > label > span {
                                 </xsl:otherwise>
                               </xsl:choose>
                             </xsl:attribute>
+                            <xsl:attribute name="tabindex">
+                              <xsl:value-of select="position() + 40000" />
+                            </xsl:attribute>
                           </xsl:if>
                         </xsl:element><!-- iframe.channel_content -->
 
@@ -1281,6 +1400,9 @@ ol#channel_size_control > li > label > span {
                       <xsl:attribute name="target">
                         <xsl:text>_blank</xsl:text>
                       </xsl:attribute>
+                      <xsl:attribute name="tabindex">
+                        <xsl:text>50000</xsl:text>
+                      </xsl:attribute>
                     </xsl:if>
                     <xsl:value-of select="head/ownerName" />
                   </xsl:element>
@@ -1299,6 +1421,9 @@ ol#channel_size_control > li > label > span {
                       <xsl:attribute name="href">
                         <xsl:text>mailto:</xsl:text>
                         <xsl:value-of select="head/ownerEmail" />
+                      </xsl:attribute>
+                      <xsl:attribute name="tabindex">
+                        <xsl:text>50000</xsl:text>
                       </xsl:attribute>
                       <xsl:value-of select="head/ownerEmail" />
                     </xsl:element>
