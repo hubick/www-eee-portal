@@ -1010,14 +1010,14 @@ ol#channel_size_control > li > label > span {
                 <xsl:call-template name="write_group_id" />
                 <xsl:text>:focus ~ div#content > div#middle > nav > ol > li#GroupNavItem-</xsl:text>
                 <xsl:call-template name="write_group_id" />
-                <xsl:text> > label {&#x0A;  border-color: var(--www-eee-nav-active-foreground);&#x0A;  border-right: none;&#x0A;}&#x0A;</xsl:text>
+                <xsl:text> > label {&#x0A;  border-color: var(--www-eee-nav-active-foreground);&#x0A;  border-right-color: transparent;&#x0A;}&#x0A;</xsl:text>
 
                 <!-- Highlight the navigation tab for a group when it's nav state input is checked. -->
                 <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
                 <xsl:call-template name="write_group_id" />
                 <xsl:text>:checked ~ div#content > div#middle > nav > ol > li#GroupNavItem-</xsl:text>
                 <xsl:call-template name="write_group_id" />
-                <xsl:text> {&#x0A;  background-color: var(--www-eee-body-background);&#x0A;  color: var(--www-eee-nav-active-foreground);&#x0A;  font-weight: bold;&#x0A;  border-style: inset;&#x0A;  border-width: medium;&#x0A;  border-color: var(--www-eee-border-color);&#x0A;  border-right: none;&#x0A;  margin-right: -0.19rem;&#x0A;}&#x0A;</xsl:text>
+                <xsl:text> {&#x0A;  background-color: var(--www-eee-body-background);&#x0A;  color: var(--www-eee-nav-active-foreground);&#x0A;  font-weight: bold;&#x0A;  border-style: inset;&#x0A;  border-width: medium;&#x0A;  border-color: var(--www-eee-border-color);&#x0A;  border-right-color: transparent;&#x0A;  margin-right: -0.19rem;&#x0A;}&#x0A;</xsl:text>
 
               </xsl:for-each>
 
