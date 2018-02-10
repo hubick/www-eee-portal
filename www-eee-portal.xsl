@@ -114,6 +114,11 @@
 
   <xsl:template name="maximize_icon">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-1 -1 13 13" preserveAspectRatio="xMidYMid">
+
+      <xsl:element name="title">
+        <xsl:text>&#x2922;</xsl:text>
+      </xsl:element>
+
       <xsl:element name="g">
         <xsl:attribute name="class">
           <xsl:text>channel_control_icon maximize_icon</xsl:text>
@@ -174,11 +179,17 @@
         </xsl:element>
 
       </xsl:element><!-- g -->
+
     </svg>
   </xsl:template><!-- maximize_icon -->
 
   <xsl:template name="close_icon">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-1 -1 13 13" preserveAspectRatio="xMidYMid">
+
+      <xsl:element name="title">
+        <xsl:text>&#x274E;</xsl:text>
+      </xsl:element>
+
       <xsl:element name="g">
         <xsl:attribute name="class">
           <xsl:text>channel_control_icon close_icon</xsl:text>
@@ -239,6 +250,7 @@
         </xsl:element>
 
       </xsl:element><!-- g -->
+
     </svg>
   </xsl:template><!-- close_icon -->
 
@@ -295,6 +307,23 @@
           <xsl:value-of select="$i" />
         </xsl:attribute>
         <xsl:element name="span">
+          <xsl:choose>
+            <xsl:when test="$i = 1">
+              <xsl:text>&#x25AA;</xsl:text><!-- 'BLACK SMALL SQUARE' -->
+            </xsl:when>
+            <xsl:when test="$i = 2">
+              <xsl:text>&#x25FE;</xsl:text><!-- 'BLACK MEDIUM SMALL SQUARE' -->
+            </xsl:when>
+            <xsl:when test="$i = 3">
+              <xsl:text>&#x25A0;</xsl:text><!-- 'BLACK SQUARE' -->
+            </xsl:when>
+            <xsl:when test="$i = 4">
+              <xsl:text>&#x25FC;</xsl:text><!-- 'BLACK MEDIUM SQUARE' -->
+            </xsl:when>
+            <xsl:when test="$i = 5">
+              <xsl:text>&#x2B1B;</xsl:text><!-- 'BLACK LARGE SQUARE' -->
+            </xsl:when>
+          </xsl:choose>
         </xsl:element>
       </xsl:element>
     </xsl:element>
@@ -635,6 +664,7 @@ ol#channel_size_control > li > label {
 ol#channel_size_control > li > label > span {
   display: block;
   background-color: black;
+  color: transparent;
 }
 
 li#ChannelSizeItem_1 > label > span {
