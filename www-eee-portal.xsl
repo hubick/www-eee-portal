@@ -278,23 +278,25 @@
           <xsl:value-of select="$i" />
         </xsl:attribute>
         <xsl:element name="span">
-          <xsl:choose>
-            <xsl:when test="$i = 1">
-              <xsl:text>&#x25AA;</xsl:text><!-- 'BLACK SMALL SQUARE' -->
-            </xsl:when>
-            <xsl:when test="$i = 2">
-              <xsl:text>&#x25FE;</xsl:text><!-- 'BLACK MEDIUM SMALL SQUARE' -->
-            </xsl:when>
-            <xsl:when test="$i = 3">
-              <xsl:text>&#x25FC;</xsl:text><!-- 'BLACK MEDIUM SQUARE' -->
-            </xsl:when>
-            <xsl:when test="$i = 4">
-              <xsl:text>&#x25A0;</xsl:text><!-- 'BLACK SQUARE' -->
-            </xsl:when>
-            <xsl:when test="$i = 5">
-              <xsl:text>&#x2B1B;</xsl:text><!-- 'BLACK LARGE SQUARE' -->
-            </xsl:when>
-          </xsl:choose>
+          <xsl:element name="span">
+            <xsl:choose>
+              <xsl:when test="$i = 1">
+                <xsl:text>&#x25AA;</xsl:text><!-- 'BLACK SMALL SQUARE' -->
+              </xsl:when>
+              <xsl:when test="$i = 2">
+                <xsl:text>&#x25FE;</xsl:text><!-- 'BLACK MEDIUM SMALL SQUARE' -->
+              </xsl:when>
+              <xsl:when test="$i = 3">
+                <xsl:text>&#x25A0;</xsl:text><!-- 'BLACK SQUARE' -->
+              </xsl:when>
+              <xsl:when test="$i = 4">
+                <xsl:text>&#x25FC;</xsl:text><!-- 'BLACK MEDIUM SQUARE' -->
+              </xsl:when>
+              <xsl:when test="$i = 5">
+                <xsl:text>&#x2B1B;</xsl:text><!-- 'BLACK LARGE SQUARE' -->
+              </xsl:when>
+            </xsl:choose>
+          </xsl:element>
         </xsl:element>
       </xsl:element>
     </xsl:element>
@@ -656,6 +658,10 @@ ol#channel_size_control > li > label > span {
   display: block;
   background-color: black;
   color: transparent;
+}
+
+ol#channel_size_control > li > label > span > span {
+  opacity: 0; /* Still read by screen readers.  */
 }
 
 li#ChannelSizeItem_1 > label > span {
