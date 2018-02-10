@@ -315,10 +315,10 @@
               <xsl:text>&#x25FE;</xsl:text><!-- 'BLACK MEDIUM SMALL SQUARE' -->
             </xsl:when>
             <xsl:when test="$i = 3">
-              <xsl:text>&#x25A0;</xsl:text><!-- 'BLACK SQUARE' -->
+              <xsl:text>&#x25FC;</xsl:text><!-- 'BLACK MEDIUM SQUARE' -->
             </xsl:when>
             <xsl:when test="$i = 4">
-              <xsl:text>&#x25FC;</xsl:text><!-- 'BLACK MEDIUM SQUARE' -->
+              <xsl:text>&#x25A0;</xsl:text><!-- 'BLACK SQUARE' -->
             </xsl:when>
             <xsl:when test="$i = 5">
               <xsl:text>&#x2B1B;</xsl:text><!-- 'BLACK LARGE SQUARE' -->
