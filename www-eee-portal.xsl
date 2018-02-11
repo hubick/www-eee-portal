@@ -7,10 +7,13 @@
   <!-- Current includes are "//html:html/html:style[@id='custom_style']", "//html:html/html:style[@id='custom_style_active_group']", "//html:html/html:ol[@id='header_links']", "//html:html/html:ol[@id='footer_links']". -->
   <xsl:param name="www-eee-includes-document" />
 
+  <!-- Should the favicon.svg head link and heading image be disabled? -->
+  <xsl:param name="www-eee-favicon-disable" select="'false'" />
+
   <!-- Should the channel titles not be made into links to the channel content URL's? -->
   <xsl:param name="www-eee-channel-title-link-disable" select="'false'" />
 
-  <!-- The channel content iframe specifies an empty 'sandbox' attribute by default (most secure), any additional permissions can be specified here. -->
+  <!-- The channel content iframe specifies an empty 'sandbox' attribute by default (most secure).  Additional permissions can be specified per-channel using a 'sandbox' attribute on the OPML 'outline' for the channel, globally for all channels via this param, or both. -->
   <xsl:param name="www-eee-channel-sandbox" select="''" />
 
   <!-- The index you want the channel size selector to default to, an integer between '1' (smallest) and '5' (largest). -->
@@ -325,17 +328,19 @@
           </xsl:element>
         </xsl:if>
 
-        <xsl:element name="link">
-          <xsl:attribute name="rel">
-            <xsl:text>icon</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="type">
-            <xsl:text>image/svg+xml</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="href">
-            <xsl:text>favicon.svg</xsl:text>
-          </xsl:attribute>
-        </xsl:element>
+        <xsl:if test="$www-eee-favicon-disable = 'false'">
+          <xsl:element name="link">
+            <xsl:attribute name="rel">
+              <xsl:text>icon</xsl:text>
+            </xsl:attribute>
+            <xsl:attribute name="type">
+              <xsl:text>image/svg+xml</xsl:text>
+            </xsl:attribute>
+            <xsl:attribute name="href">
+              <xsl:text>favicon.svg</xsl:text>
+            </xsl:attribute>
+          </xsl:element>
+        </xsl:if>
 
         <xsl:element name="meta">
           <xsl:attribute name="name">
@@ -1198,32 +1203,34 @@ input#ChannelSizeRadio-5:focus ~ div#content > footer > ol#channel_size_control 
                   <xsl:text>portal_heading</xsl:text>
                 </xsl:attribute>
 
-                <xsl:element name="a">
-                  <xsl:attribute name="id">
-                    <xsl:text>favicon</xsl:text>
-                  </xsl:attribute>
-                  <xsl:if test="head/ownerId">
-                    <xsl:attribute name="href">
-                      <xsl:value-of select="head/ownerId" />
+                <xsl:if test="$www-eee-favicon-disable = 'false'">
+                  <xsl:element name="a">
+                    <xsl:attribute name="id">
+                      <xsl:text>favicon</xsl:text>
                     </xsl:attribute>
-                    <xsl:attribute name="target">
-                      <xsl:text>_blank</xsl:text>
-                    </xsl:attribute>
-                    <xsl:attribute name="tabindex">
-                      <xsl:text>10000</xsl:text>
-                    </xsl:attribute>
-                  </xsl:if>
-                  <xsl:element name="img">
-                    <xsl:attribute name="src">
-                      <xsl:text>favicon.svg</xsl:text>
-                    </xsl:attribute>
-                    <xsl:if test="head/ownerName">
-                      <xsl:attribute name="alt">
-                        <xsl:value-of select="head/ownerName" />
+                    <xsl:if test="head/ownerId">
+                      <xsl:attribute name="href">
+                        <xsl:value-of select="head/ownerId" />
+                      </xsl:attribute>
+                      <xsl:attribute name="target">
+                        <xsl:text>_blank</xsl:text>
+                      </xsl:attribute>
+                      <xsl:attribute name="tabindex">
+                        <xsl:text>10000</xsl:text>
                       </xsl:attribute>
                     </xsl:if>
+                    <xsl:element name="img">
+                      <xsl:attribute name="src">
+                        <xsl:text>favicon.svg</xsl:text>
+                      </xsl:attribute>
+                      <xsl:if test="head/ownerName">
+                        <xsl:attribute name="alt">
+                          <xsl:value-of select="head/ownerName" />
+                        </xsl:attribute>
+                      </xsl:if>
+                    </xsl:element>
                   </xsl:element>
-                </xsl:element>
+                </xsl:if>
 
                 <xsl:element name="h1">
                   <xsl:value-of select="head/title" />
