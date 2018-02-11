@@ -393,6 +393,12 @@ input.channel_maximize_state:checked ~ div#content { /* Make sure content doesn'
   overflow: hidden;
 }
 
+a:focus {
+  outline-style: dotted;
+  outline-width: thin;
+  outline-color: black;
+}
+
 div#content > header {
   display: flex;
   align-items: center;
@@ -482,9 +488,6 @@ div#middle > nav > ol > li {
 
 div#middle > nav > ol > li > label {
   display: block;
-  border-style: solid;
-  border-width: thin;
-  border-color: transparent;
   padding: 0.25rem;
   padding-left: 0.5rem;
   cursor: pointer;
@@ -694,8 +697,9 @@ input#ChannelSizeRadio-2:focus ~ div#content > footer > ol#channel_size_control 
 input#ChannelSizeRadio-3:focus ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_3 > label,
 input#ChannelSizeRadio-4:focus ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_4 > label,
 input#ChannelSizeRadio-5:focus ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_5 > label {
-  border-style: dotted;
-  border-color: red;
+  outline-style: dotted;
+  outline-width: thin;
+  outline-color: black;
 }
 
 input#ChannelSizeRadio-1:checked ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_1 > label,
@@ -774,12 +778,12 @@ input#ChannelSizeRadio-5:checked ~ div#content > footer > ol#channel_size_contro
 
             <xsl:for-each select="body/outline">
 
-              <!-- Display a focus border around the navigation tab for a group when it's nav state input is focused. -->
+              <!-- Display a focus outline around the navigation tab for a group when it's nav state input is focused. -->
               <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
               <xsl:call-template name="write_group_id" />
               <xsl:text>:focus ~ div#content > div#middle > nav > ol > li#GroupNavItem-</xsl:text>
               <xsl:call-template name="write_group_id" />
-              <xsl:text> > label {&#x0A;  border-style: dotted;&#x0A;  border-color: white;&#x0A;}&#x0A;</xsl:text>
+              <xsl:text> {&#x0A;  outline-style: dotted;&#x0A;  outline-width: thin;&#x0A;  outline-color: black;&#x0A;}&#x0A;</xsl:text>
 
               <!-- Display the content section for a group when it's nav state input is checked. -->
               <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
@@ -797,12 +801,12 @@ input#ChannelSizeRadio-5:checked ~ div#content > footer > ol#channel_size_contro
 
               <xsl:for-each select="outline">
 
-                <!-- Display a focus border around the channel maximize control when it's maximize state input is focused. -->
+                <!-- Display a focus outline around the channel maximize control when it's maximize state input is focused. -->
                 <xsl:text>&#x0A;input#ChannelMaximizeCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text>:focus ~ div#content > div#middle > main > section.group > section#Channel-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text> > div.channel_chrome > header > div.channel_controls > label.channel_maximize {&#x0A;  border-style: dotted;&#x0A;}&#x0A;</xsl:text>
+                <xsl:text> > div.channel_chrome > header > div.channel_controls > label.channel_maximize {&#x0A;  outline-style: dotted;&#x0A;  outline-width: thin;&#x0A;  outline-color: black;&#x0A;}&#x0A;</xsl:text>
 
                 <!-- Maximize the channel section when it's maximize state input is checked. -->
                 <xsl:text>&#x0A;input#ChannelMaximizeCheckbox-</xsl:text>
@@ -825,12 +829,12 @@ input#ChannelSizeRadio-5:checked ~ div#content > footer > ol#channel_size_contro
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text> > div.channel_chrome > header > div.channel_controls > label.channel_close {&#x0A;  display: none;&#x0A;}&#x0A;</xsl:text>
 
-                <!-- Display a focus border around the channel close control when it's close state input is focused. -->
+                <!-- Display a focus outline around the channel close control when it's close state input is focused. -->
                 <xsl:text>&#x0A;input#ChannelCloseCheckbox-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
                 <xsl:text>:focus ~ div#content > div#middle > main > section.group > section#Channel-</xsl:text>
                 <xsl:call-template name="write_channel_id" />
-                <xsl:text> > div.channel_chrome > header > div.channel_controls > label.channel_close {&#x0A;  border-style: dotted;&#x0A;}&#x0A;</xsl:text>
+                <xsl:text> > div.channel_chrome > header > div.channel_controls > label.channel_close {&#x0A;  outline-style: dotted;&#x0A;  outline-width: thin;&#x0A;  outline-color: black;&#x0A;}&#x0A;</xsl:text>
 
                 <!-- Don't display the channel when it's close state input is checked. -->
                 <xsl:text>&#x0A;input#ChannelCloseCheckbox-</xsl:text>
@@ -942,6 +946,14 @@ div#portal_heading {
   border-color: var(--www-eee-border-color);
 }
 
+a#favicon:focus {
+  outline-color: var(--www-eee-portal-heading-foreground);
+}
+
+ol#header_links > li > a:focus {
+  outline-color: var(--www-eee-portal-header-foreground);
+}
+
 div#middle > nav {
   background-color: var(--www-eee-raised-background);
   color: var(--www-eee-nav-inactive-foreground);
@@ -952,6 +964,9 @@ div#middle > nav {
 }
 
 div#middle > nav > ol > li > label {
+  border-style: solid;
+  border-width: thin;
+  border-color: transparent;
   font-size: larger;
 }
 
@@ -965,6 +980,10 @@ div.channel_chrome {
   border-style: outset;
   border-width: medium;
   border-color: var(--www-eee-border-color);
+}
+
+div.channel_chrome > header > h3 > a:focus {
+  outline-color: var(--www-eee-channel-title-foreground);
 }
 
 .channel_control_icon {
@@ -1002,8 +1021,20 @@ div#content > footer > address {
   font-style: normal;
 }
 
+a#owner_name:focus, span#owner_email > a:focus, ol#footer_links > li > a:focus {
+  outline-color: var(--www-eee-portal-footer-foreground);
+}
+
 ol#channel_size_control > li > label > span {
   background-color: var(--www-eee-channel-control);
+}
+
+input#ChannelSizeRadio-1:focus ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_1 > label,
+input#ChannelSizeRadio-2:focus ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_2 > label,
+input#ChannelSizeRadio-3:focus ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_3 > label,
+input#ChannelSizeRadio-4:focus ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_4 > label,
+input#ChannelSizeRadio-5:focus ~ div#content > footer > ol#channel_size_control > li#ChannelSizeItem_5 > label {
+  outline-color: var(--www-eee-portal-footer-foreground);
 }
 
 ]]>
@@ -1016,14 +1047,32 @@ ol#channel_size_control > li > label > span {
                 <xsl:call-template name="write_group_id" />
                 <xsl:text>:focus ~ div#content > div#middle > nav > ol > li#GroupNavItem-</xsl:text>
                 <xsl:call-template name="write_group_id" />
-                <xsl:text> > label {&#x0A;  border-color: var(--www-eee-nav-active-foreground);&#x0A;  border-right-color: transparent;&#x0A;}&#x0A;</xsl:text>
+                <xsl:text> > label {&#x0A;  border-style: dotted;&#x0A;  border-width: thin;&#x0A;  border-color: var(--www-eee-nav-active-foreground);&#x0A;  border-right-color: transparent;&#x0A;}&#x0A;</xsl:text>
 
                 <!-- Highlight the navigation tab for a group when it's nav state input is checked. -->
                 <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
                 <xsl:call-template name="write_group_id" />
                 <xsl:text>:checked ~ div#content > div#middle > nav > ol > li#GroupNavItem-</xsl:text>
                 <xsl:call-template name="write_group_id" />
-                <xsl:text> {&#x0A;  background-color: var(--www-eee-body-background);&#x0A;  color: var(--www-eee-nav-active-foreground);&#x0A;  font-weight: bold;&#x0A;  border-style: inset;&#x0A;  border-width: medium;&#x0A;  border-color: var(--www-eee-border-color);&#x0A;  border-right-color: transparent;&#x0A;  margin-right: -0.19rem;&#x0A;}&#x0A;</xsl:text>
+                <xsl:text> {&#x0A;  outline-style: none;&#x0A; background-color: var(--www-eee-body-background);&#x0A;  color: var(--www-eee-nav-active-foreground);&#x0A;  font-weight: bold;&#x0A;  border-style: inset;&#x0A;  border-width: medium;&#x0A;  border-color: var(--www-eee-border-color);&#x0A;  border-right-color: transparent;&#x0A;  margin-right: -0.19rem;&#x0A;}&#x0A;</xsl:text>
+
+                <xsl:for-each select="outline">
+
+                  <!-- Display a focus outline around the channel maximize control when it's maximize state input is focused. -->
+                  <xsl:text>&#x0A;input#ChannelMaximizeCheckbox-</xsl:text>
+                  <xsl:call-template name="write_channel_id" />
+                  <xsl:text>:focus ~ div#content > div#middle > main > section.group > section#Channel-</xsl:text>
+                  <xsl:call-template name="write_channel_id" />
+                  <xsl:text> > div.channel_chrome > header > div.channel_controls > label.channel_maximize {&#x0A;  outline-color: var(--www-eee-channel-control);&#x0A;}&#x0A;</xsl:text>
+
+                  <!-- Display a focus outline around the channel close control when it's close state input is focused. -->
+                  <xsl:text>&#x0A;input#ChannelCloseCheckbox-</xsl:text>
+                  <xsl:call-template name="write_channel_id" />
+                  <xsl:text>:focus ~ div#content > div#middle > main > section.group > section#Channel-</xsl:text>
+                  <xsl:call-template name="write_channel_id" />
+                  <xsl:text> > div.channel_chrome > header > div.channel_controls > label.channel_close {&#x0A;  outline-color: var(--www-eee-channel-control);&#x0A;}&#x0A;</xsl:text>
+
+                </xsl:for-each>
 
               </xsl:for-each>
 
