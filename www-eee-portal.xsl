@@ -1417,7 +1417,15 @@ input#ChannelSizeRadio-5:focus ~ div#content > footer > ol#channel_size_control 
                               </xsl:choose>
                             </xsl:attribute>
                             <xsl:attribute name="sandbox">
-                              <xsl:value-of select="$www-eee-channel-sandbox" />
+                              <xsl:if test="$www-eee-channel-sandbox">
+                                <xsl:value-of select="$www-eee-channel-sandbox" />
+                              </xsl:if>
+                              <xsl:if test="@sandbox">
+                                <xsl:if test="$www-eee-channel-sandbox">
+                                  <xsl:text> </xsl:text>
+                                </xsl:if>
+                                <xsl:value-of select="@sandbox" />
+                              </xsl:if>
                             </xsl:attribute>
                             <xsl:attribute name="title">
                               <xsl:choose>
