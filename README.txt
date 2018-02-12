@@ -104,7 +104,7 @@ div#portal_heading {
 ]]>
 </style>
 
-<style id="custom_style_active_group">
+<style id="custom_style_group_nav_item_checked">
 <![CDATA[
 
   background-color: blue;

@@ -4,7 +4,8 @@
   <xsl:output indent="yes" media-type="application/xhtml+xml" method="xml" omit-xml-declaration="no" doctype-system="about:legacy-compat" />
 
   <!-- If an includes document is specified it will be parsed for content to be included in the appropriate sections. -->
-  <!-- Current includes are "//html:html/html:style[@id='custom_style']", "//html:html/html:style[@id='custom_style_active_group']", "//html:html/html:ol[@id='header_links']", "//html:html/html:ol[@id='footer_links']". -->
+  <!-- Current includes are "//html:html/html:ol[@id='header_links']", "//html:html/html:ol[@id='footer_links']", "//html:html/html:style[@id='custom_style']", "//html:html/html:style[@id='custom_style_group_nav_item_focus']", "//html:html/html:style[@id='custom_style_group_nav_label_focus']", "//html:html/html:style[@id='custom_style_group_nav_item_checked']", "//html:html/html:style[@id='custom_style_group_nav_label_checked']". -->
+  <!-- The 'custom_style_group_nav_' includes will only be used when a 'custom_style' element is also present. -->
   <xsl:param name="www-eee-includes-document" />
 
   <!-- Should the favicon.svg head link and heading image be disabled? -->
@@ -1093,21 +1094,57 @@ input#ChannelSizeRadio-5:focus ~ div#content > footer > ol#channel_size_control 
           </xsl:call-template><!-- style_inline -->
         </xsl:if><!-- $www-eee-default-theme-disable = 'false' -->
 
-        <xsl:if test="($www-eee-includes-document) and ((document($www-eee-includes-document)//html:html/html:style[@id='custom_style']) or (document($www-eee-includes-document)//html:html/html:style[@id='custom_style_active_group']))">
+        <xsl:if test="($www-eee-includes-document) and (document($www-eee-includes-document)//html:html/html:style[@id='custom_style'])">
           <xsl:call-template name="style_inline">
             <xsl:with-param name="id" select="'custom_style'" />
             <xsl:with-param name="style">
 
               <xsl:apply-templates select="document($www-eee-includes-document)//html:html/html:style[@id='custom_style']/node()" mode="identity" />
 
-              <xsl:if test="document($www-eee-includes-document)//html:html/html:style[@id='custom_style_active_group']">
+              <xsl:if test="document($www-eee-includes-document)//html:html/html:style[@id='custom_style_group_nav_item_focus']">
+                <xsl:for-each select="body/outline">
+                  <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
+                  <xsl:call-template name="write_group_id" />
+                  <xsl:text>:focus ~ div#content > div#middle > nav > ol > li#GroupNavItem-</xsl:text>
+                  <xsl:call-template name="write_group_id" />
+                  <xsl:text> {&#x0A;</xsl:text>
+                  <xsl:apply-templates select="document($www-eee-includes-document)//html:html/html:style[@id='custom_style_group_nav_item_focus']/node()" mode="identity" />
+                  <xsl:text>}&#x0A;</xsl:text>
+                </xsl:for-each>
+              </xsl:if>
+
+              <xsl:if test="document($www-eee-includes-document)//html:html/html:style[@id='custom_style_group_nav_label_focus']">
+                <xsl:for-each select="body/outline">
+                  <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
+                  <xsl:call-template name="write_group_id" />
+                  <xsl:text>:focus ~ div#content > div#middle > nav > ol > li#GroupNavItem-</xsl:text>
+                  <xsl:call-template name="write_group_id" />
+                  <xsl:text> > label {&#x0A;</xsl:text>
+                  <xsl:apply-templates select="document($www-eee-includes-document)//html:html/html:style[@id='custom_style_group_nav_label_focus']/node()" mode="identity" />
+                  <xsl:text>}&#x0A;</xsl:text>
+                </xsl:for-each>
+              </xsl:if>
+
+              <xsl:if test="document($www-eee-includes-document)//html:html/html:style[@id='custom_style_group_nav_item_checked']">
                 <xsl:for-each select="body/outline">
                   <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
                   <xsl:call-template name="write_group_id" />
                   <xsl:text>:checked ~ div#content > div#middle > nav > ol > li#GroupNavItem-</xsl:text>
                   <xsl:call-template name="write_group_id" />
                   <xsl:text> {&#x0A;</xsl:text>
-                  <xsl:apply-templates select="document($www-eee-includes-document)//html:html/html:style[@id='custom_style_active_group']/node()" mode="identity" />
+                  <xsl:apply-templates select="document($www-eee-includes-document)//html:html/html:style[@id='custom_style_group_nav_item_checked']/node()" mode="identity" />
+                  <xsl:text>}&#x0A;</xsl:text>
+                </xsl:for-each>
+              </xsl:if>
+
+              <xsl:if test="document($www-eee-includes-document)//html:html/html:style[@id='custom_style_group_nav_label_checked']">
+                <xsl:for-each select="body/outline">
+                  <xsl:text>&#x0A;input#GroupNavRadio-</xsl:text>
+                  <xsl:call-template name="write_group_id" />
+                  <xsl:text>:checked ~ div#content > div#middle > nav > ol > li#GroupNavItem-</xsl:text>
+                  <xsl:call-template name="write_group_id" />
+                  <xsl:text> > label {&#x0A;</xsl:text>
+                  <xsl:apply-templates select="document($www-eee-includes-document)//html:html/html:style[@id='custom_style_group_nav_label_checked']/node()" mode="identity" />
                   <xsl:text>}&#x0A;</xsl:text>
                 </xsl:for-each>
               </xsl:if>
