@@ -977,6 +977,12 @@ div#middle > nav {
   border-left: none;
 }
 
+div#middle > nav > ol > li {
+  border-style: solid;
+  border-width: medium;
+  border-color: transparent;
+}
+
 div#middle > nav > ol > li > label {
   border-style: solid;
   border-width: thin;
