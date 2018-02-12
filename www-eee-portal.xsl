@@ -417,20 +417,20 @@ div#portal_heading {
   display: flex;
   align-items: center;
   margin: 0.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
 }
 
 div#portal_heading > * {
-  margin: 0;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
+  margin: 0.25rem;
   padding: 0;
+}
+
+div#portal_heading > *:last-child {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 a#favicon {
   display: grid;
-  margin-left: 0;
   border-style: none;
   border-width: 0;
   text-decoration: none;
@@ -442,7 +442,13 @@ a#favicon img {
 }
 
 div#portal_heading > h1 {
+  margin-top: 0;
+  margin-bottom: 0;
   white-space: nowrap;
+}
+
+div#portal_heading > a#favicon + h1 {
+  margin-left: 0.75rem;
 }
 
 ol#header_links {
