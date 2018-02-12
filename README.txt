@@ -3,6 +3,21 @@ WWW-EEE Portal
 
 WWW-EEE Portal allows you to generate your own simple web portal.
 
+Technically speaking, it's an XSLT file which transforms an OPML file (XML listing of content URL's) into an HTML file containing an iframe for each URL, plus navigation.
+
+
+Features
+--------
+
+- Define your portal using a single OPML (XML) file, listing the URL's for your content.
+- The generated portal is a single self-contained static HTML file, with no server-side software or 3rd-party libraries required.
+- The entire implementation is contained within a single XSLT transformation file, open source (AGPL), and available for customization.
+- Provides content-grouping pages with tabbed navigation, and a flexible layout which scales from mobile to desktop browsers.
+- The generated portal utilizes the latest HTML standards, Scalable Vector Graphics (SVG), and comes with full support for accessibility and keyboard navigation.
+- All portal content is aggregated on the client side by the browser (using iframes), which won't break site features like server side aggregation does.
+- Extremely secure, with all content fully sandboxed by default, and with the generated portal itself utilizing no javascript.
+- Includes a neutral default theme which can be easily customized or completely replaced.
+
 
 Configuration
 -------------
@@ -22,7 +37,7 @@ The primary thing you will need is to create an OPML XML file pointing to the co
   <body>
     <outline text="Welcome">
       <outline type="link" text="About" url="http://www.example.com/portal/about.html" />
-      <outline type="link" text="Hello" url="http://www.example.com/portal/hello.html" sandbox="allow-popups" />
+      <outline type="link" text="Hello" url="http://www.example.com/portal/hello.html" sandbox="allow-popups allow-popups-to-escape-sandbox" />
     </outline>
     <outline text="Stuff">
       <outline type="link" text="Big Stuff" url="big.html" />
