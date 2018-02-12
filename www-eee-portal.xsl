@@ -417,14 +417,20 @@ div#portal_heading {
   display: flex;
   align-items: center;
   margin: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+div#portal_heading > * {
+  margin: 0;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  padding: 0;
 }
 
 a#favicon {
   display: grid;
-  margin: 0;
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
-  padding: 0;
+  margin-left: 0;
   border-style: none;
   border-width: 0;
   text-decoration: none;
@@ -436,10 +442,6 @@ a#favicon img {
 }
 
 div#portal_heading > h1 {
-  margin: 0;
-  padding: 0;
-  padding-right: 1rem;
-  padding-left: 0.5rem;
   white-space: nowrap;
 }
 
