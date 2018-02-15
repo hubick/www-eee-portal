@@ -68,7 +68,7 @@ You can invoke this manually each time (after updates to the .opml or .xsl), or 
 ---------------------generate_portal.sh---------------------------------
 xsltproc -o index.xhtml \
   --stringparam www-eee-body-background 'black' \
-  --stringparam www-eee-body-foreground 'white' \
+  --stringparam www-eee-body-color 'white' \
   'www-eee-portal.xsl' index.opml
 ------------------------------------------------------------------------
 
@@ -94,17 +94,17 @@ You can use the 'www-eee-includes-document' parameter to to perform more extensi
   <li><a href="http://portal.www-eee.net/" target="_blank" tabindex="60000">Footer Link 2</a></li>
 </ol>
 
-<style id="custom_style">
+<style class="custom_style">
 <![CDATA[
 
-div#portal_heading {
+div#portal_title {
   background-color: red;
 }
 
 ]]>
 </style>
 
-<style id="custom_style_group_nav_item_checked">
+<style class="custom_style_group_nav_item_checked">
 <![CDATA[
 
   background-color: blue;
