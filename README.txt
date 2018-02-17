@@ -43,6 +43,13 @@ The primary thing you will need is to create an OPML XML file pointing to the co
       <outline type="link" text="Big Stuff" url="big.html" />
       <outline type="link" text="Small Stuff" url="small.html" />
     </outline>
+    <outline text="Example">
+      <outline type="text" text="Text Example">Hello World &amp; Aliens!</outline>
+      <outline type="xhtml" text="XHTML Example">
+        <p xmlns="http://www.w3.org/1999/xhtml">Hello <b>World</b> &amp; Aliens!</p>
+      </outline>
+      <outline type="html" text="HTML Example">&lt;p&gt;Hello &lt;b&gt;World&lt;/b&gt; &amp;amp; Aliens!&lt;/p&gt;</outline>
+    </outline>
   </body>
 </opml>
 ------------------------------------------------------------------------

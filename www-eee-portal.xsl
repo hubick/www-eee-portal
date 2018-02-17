@@ -79,7 +79,7 @@
   <xsl:param name="www-eee-channel-content-border-width" select="'var(--www-eee-channel-chrome-border-width)'" />
   <xsl:param name="www-eee-channel-content-border-color" select="'var(--www-eee-channel-chrome-border-color)'" />
   <xsl:param name="www-eee-channel-content-background" select="'var(--www-eee-channel-chrome-background)'" />
-  <xsl:param name="www-eee-channel-content-color" select="'var(--www-eee-channel-chrome-color)'" />
+  <xsl:param name="www-eee-channel-content-color" select="'black'" />
   <xsl:param name="www-eee-portal-footer-border-style" select="'var(--www-eee-chrome-border-style)'" />
   <xsl:param name="www-eee-portal-footer-border-width" select="'var(--www-eee-chrome-border-width)'" />
   <xsl:param name="www-eee-portal-footer-border-color" select="'var(--www-eee-chrome-border-color)'" />
@@ -630,7 +630,7 @@ input#channel_size_state_5:checked ~ div#content > footer > ol#channel_size_cont
 ]]>
         </xsl:text>
 
-        <xsl:for-each select="body/outline">
+        <xsl:for-each select="body/outline[not(@type)][not(@isComment = 'true')]">
 
           <!-- Display a focus outline around the navigation tab for a group when it's nav state input is focused. -->
           <xsl:text>&#x0A;input#GroupNavState-</xsl:text>
@@ -660,7 +660,7 @@ input#channel_size_state_5:checked ~ div#content > footer > ol#channel_size_cont
           <xsl:call-template name="write_group_id" />
           <xsl:text> {&#x0A;  display: inline-block;&#x0A;  position: absolute;&#x0A;  left: -10000px;&#x0A;  top: auto;&#x0A;  width: 1px;&#x0A;  height: 1px;&#x0A;  overflow: hidden;&#x0A;}&#x0A;</xsl:text>
 
-          <xsl:for-each select="outline">
+          <xsl:for-each select="outline[((@type = 'link') and @url) or @htmlUrl or (@type = 'text') or (@type = 'xhtml') or (@type = 'html')][not(@isComment = 'true')]">
 
             <!-- Display a focus outline around the channel maximize control when it's maximize state input is focused. -->
             <xsl:text>&#x0A;input#ChannelMaximizeState-</xsl:text>
@@ -1147,7 +1147,7 @@ input#channel_size_state_5:checked ~ div#content > footer > ol#channel_size_cont
 ]]>
         </xsl:text>
 
-        <xsl:for-each select="body/outline">
+        <xsl:for-each select="body/outline[not(@type)][not(@isComment = 'true')]">
 
           <!-- Display a focus outline around the navigation tab for a group when it's nav state input is focused. -->
           <xsl:text>&#x0A;input#GroupNavState-</xsl:text>
@@ -1163,7 +1163,7 @@ input#channel_size_state_5:checked ~ div#content > footer > ol#channel_size_cont
           <xsl:call-template name="write_group_id" />
           <xsl:text> {&#x0A;  border-style: var(--www-eee-group-nav-item-checked-border-style);&#x0A;  border-width: var(--www-eee-group-nav-item-checked-border-width);&#x0A;  border-color: var(--www-eee-group-nav-item-checked-border-color);&#x0A;  background-color: var(--www-eee-group-nav-item-checked-background);&#x0A;  color: var(--www-eee-group-nav-item-checked-color);&#x0A;}&#x0A;</xsl:text>
 
-          <xsl:for-each select="outline">
+          <xsl:for-each select="outline[((@type = 'link') and @url) or @htmlUrl or (@type = 'text') or (@type = 'xhtml') or (@type = 'html')][not(@isComment = 'true')]">
 
             <!-- Display a focus outline around the channel maximize control when it's maximize state input is focused. -->
             <xsl:text>&#x0A;input#ChannelMaximizeState-</xsl:text>
@@ -1193,7 +1193,7 @@ input#channel_size_state_5:checked ~ div#content > footer > ol#channel_size_cont
 
       <xsl:variable name="includes_document_content" select="document($www-eee-includes-document)" />
       <xsl:variable name="portal_title" select="head/title" />
-      <xsl:variable name="group_outlines" select="body/outline" />
+      <xsl:variable name="group_outlines" select="body/outline[not(@type)][not(@isComment = 'true')]" />
 
       <xsl:for-each select="$includes_document_content//html:html/html:style[@class='custom_style']">
         <xsl:call-template name="style_inline">
@@ -1403,7 +1403,7 @@ input#channel_size_state_5:checked ~ div#content > footer > ol#channel_size_cont
 
 
   <xsl:template name="group_nav_state">
-    <xsl:for-each select="body/outline">
+    <xsl:for-each select="body/outline[not(@type)][not(@isComment = 'true')]">
 
       <xsl:element name="input">
         <xsl:attribute name="type">
@@ -1434,9 +1434,9 @@ input#channel_size_state_5:checked ~ div#content > footer > ol#channel_size_cont
 
 
   <xsl:template name="channel_control_state">
-    <xsl:for-each select="body/outline">
+    <xsl:for-each select="body/outline[not(@type)][not(@isComment = 'true')]">
 
-      <xsl:for-each select="outline">
+      <xsl:for-each select="outline[((@type = 'link') and @url) or @htmlUrl or (@type = 'text') or (@type = 'xhtml') or (@type = 'html')][not(@isComment = 'true')]">
 
         <xsl:element name="input">
           <xsl:attribute name="type">
@@ -1592,7 +1592,7 @@ input#channel_size_state_5:checked ~ div#content > footer > ol#channel_size_cont
     <xsl:element name="nav">
       <xsl:element name="ol">
 
-        <xsl:for-each select="body/outline">
+        <xsl:for-each select="body/outline[not(@type)][not(@isComment = 'true')]">
 
           <xsl:element name="li">
             <xsl:attribute name="id">
@@ -1840,47 +1840,75 @@ input#channel_size_state_5:checked ~ div#content > footer > ol#channel_size_cont
 
 
   <xsl:template name="channel_content">
-    <xsl:element name="iframe">
-      <xsl:if test="@url or @htmlUrl">
-        <xsl:attribute name="class">
-          <xsl:text>channel_content</xsl:text>
-        </xsl:attribute>
-        <xsl:attribute name="src">
-          <xsl:choose>
-            <xsl:when test="@url">
-              <xsl:value-of select="@url" />
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:value-of select="@htmlUrl" />
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:attribute>
-        <xsl:attribute name="sandbox">
-          <xsl:if test="$www-eee-channel-sandbox">
-            <xsl:value-of select="$www-eee-channel-sandbox" />
-          </xsl:if>
-          <xsl:if test="@sandbox">
+    <xsl:choose>
+      <xsl:when test="((@type = 'link') and @url) or @htmlUrl">
+        <xsl:element name="iframe">
+          <xsl:attribute name="class">
+            <xsl:text>channel_content</xsl:text>
+          </xsl:attribute>
+          <xsl:attribute name="src">
+            <xsl:choose>
+              <xsl:when test="((@type = 'link') and @url)">
+                <xsl:value-of select="@url" />
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="@htmlUrl" />
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:attribute>
+          <xsl:attribute name="sandbox">
             <xsl:if test="$www-eee-channel-sandbox">
-              <xsl:text> </xsl:text>
+              <xsl:value-of select="$www-eee-channel-sandbox" />
             </xsl:if>
-            <xsl:value-of select="@sandbox" />
-          </xsl:if>
-        </xsl:attribute>
-        <xsl:attribute name="title">
-          <xsl:choose>
-            <xsl:when test="@title">
-              <xsl:value-of select="@title" />
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:value-of select="@text" />
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:attribute>
-        <xsl:attribute name="tabindex">
-          <xsl:value-of select="(position() * 10) + 40002" />
-        </xsl:attribute>
-      </xsl:if>
-    </xsl:element><!-- iframe.channel_content -->
+            <xsl:if test="@sandbox">
+              <xsl:if test="$www-eee-channel-sandbox">
+                <xsl:text> </xsl:text>
+              </xsl:if>
+              <xsl:value-of select="@sandbox" />
+            </xsl:if>
+          </xsl:attribute>
+          <xsl:attribute name="title">
+            <xsl:choose>
+              <xsl:when test="@title">
+                <xsl:value-of select="@title" />
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="@text" />
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:attribute>
+          <xsl:attribute name="tabindex">
+            <xsl:value-of select="(position() * 10) + 40002" />
+          </xsl:attribute>
+        </xsl:element><!-- iframe.channel_content -->
+      </xsl:when>
+      <xsl:when test="@type = 'text'">
+        <xsl:element name="div">
+          <xsl:attribute name="class">
+            <xsl:text>channel_content</xsl:text>
+          </xsl:attribute>
+          <xsl:element name="p">
+            <xsl:value-of select="text()" />
+          </xsl:element>
+        </xsl:element>
+      </xsl:when>
+      <xsl:when test="@type = 'xhtml'">
+        <xsl:element name="div">
+          <xsl:attribute name="class">
+            <xsl:text>channel_content</xsl:text>
+          </xsl:attribute>
+          <xsl:apply-templates select="html:*" mode="identity" />
+        </xsl:element>
+      </xsl:when>
+      <xsl:when test="@type = 'html'"><!-- Server-side XSLT recommended if using this, due to spotty support for 'disable-output-escaping'. -->
+        <xsl:element name="div">
+          <xsl:attribute name="class">
+            <xsl:text>channel_content</xsl:text>
+          </xsl:attribute>
+          <xsl:value-of select="text()" disable-output-escaping="yes" />
+        </xsl:element>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
 
@@ -2066,7 +2094,7 @@ input#channel_size_state_5:checked ~ div#content > footer > ol#channel_size_cont
 
             <xsl:element name="main">
 
-              <xsl:for-each select="body/outline">
+              <xsl:for-each select="body/outline[not(@type)][not(@isComment = 'true')]">
                 <xsl:element name="section">
                   <xsl:attribute name="id">
                     <xsl:text>Group-</xsl:text>
@@ -2087,7 +2115,7 @@ input#channel_size_state_5:checked ~ div#content > footer > ol#channel_size_cont
                     </xsl:choose>
                   </xsl:element>
 
-                  <xsl:for-each select="outline">
+                  <xsl:for-each select="outline[((@type = 'link') and @url) or @htmlUrl or (@type = 'text') or (@type = 'xhtml') or (@type = 'html')][not(@isComment = 'true')]">
 
                     <xsl:call-template name="channel" />
 
