@@ -26,7 +26,7 @@ The primary thing you will need is to create an OPML XML file pointing to the co
 
 ---------------------index.opml-----------------------------------------
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="http://portal.www-eee.net/www-eee-portal.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/hubick/www-eee-portal/master/www-eee-portal.xsl"?>
 <opml version="1.0">
   <head>
     <title>My Portal</title>
@@ -92,13 +92,13 @@ You can use the 'www-eee-includes-document' parameter to to perform more extensi
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <ol id="header_links">
-  <li><a href="http://portal.www-eee.net/" target="_blank" tabindex="20000">Header Link 1</a></li>
-  <li><a href="http://portal.www-eee.net/" target="_blank" tabindex="20000"><img src="favicon.svg" alt="example" /></a></li>
+  <li><a href="http://www.example.com/" target="_blank" tabindex="20000">Header Link 1</a></li>
+  <li><a href="http://www.example.com/" target="_blank" tabindex="20000"><img src="favicon.svg" alt="example" /></a></li>
 </ol>
 
 <ol id="footer_links">
-  <li><a href="http://portal.www-eee.net/" target="_blank" tabindex="60000">Footer Link 1</a></li>
-  <li><a href="http://portal.www-eee.net/" target="_blank" tabindex="60000">Footer Link 2</a></li>
+  <li><a href="http://www.example.com/" target="_blank" tabindex="60000">Footer Link 1</a></li>
+  <li><a href="http://www.example.com/" target="_blank" tabindex="60000">Footer Link 2</a></li>
 </ol>
 
 <style class="custom_style">
